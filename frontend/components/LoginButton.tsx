@@ -1,17 +1,14 @@
 "use client";
-import { useOCAuth } from "@opencampus/ocid-connect-js";
-import OCButton from "./OCButton";
-
+import { usePrivy } from "@privy-io/react-auth";
+import { Button } from "./ui/button";
 const LoginButton = () => {
-  const { ocAuth } = useOCAuth();
+  const { login }  = usePrivy()
 
-  const handleLogin = async () => {
-    await ocAuth.signInWithRedirect({
-      state: "opencampus",
-    });
-  };
-
-  return <OCButton  onClick={handleLogin}>Connect OCID</OCButton>;
+  return (
+    <Button onClick={() => login({ loginMethods: ['email', 'wallet'] })}>
+      login with email and wallet only
+    </Button>
+  )
 };
 
 export default LoginButton;

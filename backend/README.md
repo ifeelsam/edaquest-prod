@@ -24,7 +24,7 @@ npx hardhat compile
 npx hardhat test
 
 # For deploying the smart contracts to testnet
-npx hardhat run scripts/deployGreeter.ts --network educhain-testnet
+npx hardhat run scripts/deploy.ts --network educhain-testnet
 
 # For verifying the smart contracts on testnet
 npx hardhat verify --network educhain-testnet <deployed-contract-address>

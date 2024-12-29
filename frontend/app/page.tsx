@@ -14,7 +14,7 @@ export default function Home() {
             eduQuest
           </h1>
           <button onClick={() => login({ loginMethods: ['email', 'wallet'] })}>
-            Login with email and wallet only
+            login with email and wallet only
           </button>;
         </div>
 
