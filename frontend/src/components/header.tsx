@@ -17,10 +17,11 @@ export default function Header() {
         <div className="hidden sm:flex space-x-4">
           <Link href="#" className="neon-button px-4 py-2 rounded-xl">Courses</Link>
           <Link href="#" className="neon-button px-4 py-2 rounded-xl">About</Link>
-          <button onClick={() => login({ loginMethods: ['email', 'wallet'] })}
-            className="neon-button px-4 py-2 rounded-xl">
-            Login
-          </button>
+          {/* <button onClick={() => login({ loginMethods: ['email', 'wallet'] })} */}
+          {/*   className="neon-button px-4 py-2 rounded-xl"> */}
+          {/*   Login */}
+          {/* </button> */}
+          <Profile />
         </div>
         <button
           className="sm:hidden neon-button px-2 py-1 rounded-xl"
@@ -40,3 +41,32 @@ export default function Header() {
   )
 }
 
+
+function Profile() {
+  const { ready, login, authenticated, user } = usePrivy();
+
+  if (ready && !authenticated) {
+    return (
+      <button onClick={() => login({ loginMethods: ['email', 'wallet'] })}
+        className="neon-button px-4 py-2 rounded-xl">
+        Login
+      </button>
+    )
+  }
+  if (ready && authenticated) {
+    const imgUri = `https://api.dicebear.com/9.x/bottts/svg?seed=${user?.wallet?.address}`
+
+    return (
+      <div className="flex items-center space-x-4">
+        <div className="relative">
+          <img src={imgUri} alt="User Avatar" width={40} height={40} className="pixel-art rounded-full neon-border" />
+          <span className="absolute -top-1 -right-1 bg-accent text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">3</span>
+        </div>
+        <div className="text-sm">
+          <p className="font-bold">1000 EDQ</p>
+          <p className="text-xs">Wallet Balance</p>
+        </div>
+      </div>
+    )
+  }
+}

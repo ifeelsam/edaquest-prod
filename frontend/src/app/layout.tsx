@@ -8,7 +8,7 @@ import Providers from '@/lib/provider'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'EdaQuest - Level Up Your Learning Journey',
+  title: 'EdaQuest',
   description: 'Where Education Meets Adventure in the Digital Realm',
 }
 
@@ -18,7 +18,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={`${inter.className} min-h-screen flex flex-col`}>
         <Providers>
           <Header />

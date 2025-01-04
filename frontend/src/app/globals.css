@@ -15,6 +15,62 @@ body {
   background: linear-gradient(to bottom, #2D0A4E, #1A1A1A);
   color: #FFFFFF;
   font-family: 'Roboto', sans-serif;
+  /* Border Radius - Keeping sharp edges for retro feel */
+  --privy-border-radius-sm: 4px;
+  --privy-border-radius-md: 8px;
+  --privy-border-radius-lg: 12px;
+  --privy-border-radius-full: 999px;
+
+  /* Background Colors - Dark theme with cyber feel */
+  --privy-color-background: #0A0A1E;      /* Deep space background */
+  --privy-color-background-2: #1E1E3F;    /* Slightly lighter background */
+  --privy-color-background-3: #2A2A4F;    /* Modal/card background */
+
+  /* Foreground Colors - Text and UI elements */
+  --privy-color-foreground: #FFFFFF;      /* Primary text */
+  --privy-color-foreground-2: #E1E1E6;    /* Secondary text */
+  --privy-color-foreground-3: #B4B4C0;    /* Tertiary text */
+  --privy-color-foreground-4: #8888A0;    /* Disabled text */
+  --privy-color-foreground-accent: #FF2E6C; /* Highlighted text */
+
+  /* Accent Colors - Primary brand colors */
+  --privy-color-accent: #676FE8;          /* Primary accent */
+  --privy-color-accent-light: #8086EC;    /* Lighter accent */
+  --privy-color-accent-lightest: #9A9FF0; /* Lightest accent */
+  --privy-color-accent-dark: #4B50BE;     /* Darker accent */
+  --privy-color-accent-darkest: #363C8E;  /* Darkest accent */
+
+  /* Status Colors */
+  --privy-color-success: #50E3C2;         /* Success messages */
+  --privy-color-error: #FF3B5C;           /* Error messages */
+  --privy-color-error-light: #FF5C7C;     /* Error backgrounds */
+}
+
+/* Additional custom styles for Privy elements */
+.privy-modal {
+  backdrop-filter: blur(8px);
+  box-shadow: 0 0 20px rgba(103, 111, 232, 0.2);
+  border: 1px solid rgba(103, 111, 232, 0.1);
+}
+
+.privy-button {
+  text-shadow: 0 0 10px rgba(255, 46, 108, 0.5);
+  transition: all 0.3s ease;
+}
+
+.privy-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 15px rgba(103, 111, 232, 0.4);
+}
+
+.privy-input {
+  background: rgba(26, 26, 46, 0.6);
+  border: 1px solid rgba(103, 111, 232, 0.3);
+}
+
+.privy-input:focus {
+  border-color: #676FE8;
+  box-shadow: 0 0 10px rgba(103, 111, 232, 0.2);
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -42,6 +98,11 @@ h1, h2, h3, h4, h5, h6 {
   border: 2px solid var(--accent);
   box-shadow: 0 0 10px var(--accent);
   transition: all 0.3s ease;
+}
+
+.neon-border {
+  border: 2px solid var(--primary);
+  box-shadow: 0 0 10px var(--primary);
 }
 
 .neon-button:hover {

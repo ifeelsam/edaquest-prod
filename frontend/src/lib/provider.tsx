@@ -8,9 +8,9 @@ export default function Providers({ children }: { children: React.ReactNode }) {
       appId="cm58j5nmx00vr52bsakztgq2r"
       config={{
         appearance: {
-          theme: 'light',
-          accentColor: '#676FFF',
-          // logo: 'https://',
+          logo: '/diamond.png',
+          landingHeader: "EdaQuest",
+          loginMessage: "Log in or Sign up to EdaQuest"
         },
         embeddedWallets: {
           createOnLogin: 'users-without-wallets',
