@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto&family=Roboto+Mono&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: #676FE8;
+  --secondary: #4B50BE;
+  --accent: #FF2E6C;
+  --background: #1A1A1A;
+}
+
+body {
+  background: linear-gradient(to bottom, #2D0A4E, #1A1A1A);
+  color: #FFFFFF;
+  font-family: 'Roboto', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Press Start 2P', cursive;
+}
+
+.pixel-art {
+  image-rendering: pixelated;
+}
+
+.neon-glow {
+  text-shadow: 0 0 5px #FF2E6C, 0 0 10px #FF2E6C, 0 0 15px #FF2E6C, 0 0 20px #FF2E6C;
+}
+
+.glass-morphic {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.neon-button {
+  background: var(--primary);
+  color: #FFFFFF;
+  border: 2px solid var(--accent);
+  box-shadow: 0 0 10px var(--accent);
+  transition: all 0.3s ease;
+}
+
+.neon-button:hover {
+  background: var(--accent);
+  box-shadow: 0 0 20px var(--accent);
+}
+
+.grid-background {
+  background-image: 
+    linear-gradient(to right, rgba(103, 111, 232, 0.1) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(103, 111, 232, 0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
