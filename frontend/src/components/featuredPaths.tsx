@@ -45,7 +45,7 @@ export default function FeaturedPaths() {
               <div className="mb-4 text-sm">
                 <p>{path.quests} quests, {path.achievements} achievements</p>
                 <p>Entry Level: {path.level}</p>
-                <p>Popular badge: "{path.badge}"</p>
+                <p>Popular badge: &ldquo;{path.badge}&rdquo;</p>
               </div>
               <button className="neon-button w-full py-2 rounded">Start Learning</button>
             </div>

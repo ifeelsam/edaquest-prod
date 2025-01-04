@@ -20,7 +20,7 @@ export default function Footer() {
             <h3 className="text-xl font-bold mb-4">Connect With Us</h3>
             <div className="flex space-x-4">
               <a href="#" className="text-2xl">📘</a>
-              <a href="#" className="text-2xl">🐦</a>
+              <a href="https://x.com/edaquest" className="text-2xl">🐦</a>
               <a href="#" className="text-2xl">📸</a>
               <a href="#" className="text-2xl">🎮</a>
             </div>
