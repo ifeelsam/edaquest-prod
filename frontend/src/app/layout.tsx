@@ -10,9 +10,6 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
   title: 'EdaQuest - Level Up Your Learning Journey',
   description: 'Where Education Meets Adventure in the Digital Realm',
-  icons: {
-    icon: "/diamond.png"
-  }
 }
 
 export default function RootLayout({
