@@ -8,7 +8,7 @@ export default function Hero() {
         <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 neon-glow">
           Level Up Your Learning Journey
         </h1>
-        <p className="text-lg sm:text-xl md:text-2xl mb-8">
+        <p className="text-lg sm:text-xl md:text-2xl mb-9 mt-5">
           Where Education Meets Adventure in the Digital Realm
         </p>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-12">

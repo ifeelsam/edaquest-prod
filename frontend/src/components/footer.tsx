@@ -27,7 +27,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="mt-8 text-center">
-          <p className="text-sm sm:text-base">&copy; 2025 EdaQuest. All rights reserved.</p>
+          <p className="font-normal text-sm sm:text-base">&copy; 2025 EdaQuest. All rights reserved.</p>
         </div>
       </div>
       <div className="absolute inset-0 grid-background opacity-20"></div>
