@@ -59,7 +59,7 @@ function Profile() {
     return (
       <div className="flex items-center space-x-4">
         <div className="relative">
-          <img src={imgUri} alt="User Avatar" width={40} height={40} className="pixel-art rounded-full neon-border" />
+          <Image src={imgUri} alt="User Avatar" width={40} height={40} className="pixel-art rounded-full neon-border" />
           <span className="absolute -top-1 -right-1 bg-accent text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">3</span>
         </div>
         <div className="text-sm">

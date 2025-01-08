@@ -107,22 +107,22 @@ export default function AdvancedProgressTracker() {
           ))}
         </div>
       </div>
-      {/**/}
-      {/* <div className="mt-8"> */}
-      {/*   <h3 className="text-lg font-bold mb-4">Learning Path</h3> */}
-      {/*   <div className="flex flex-wrap justify-center gap-4"> */}
-      {/*     {[1, 2, 3, 4, 5].map((node) => ( */}
-      {/*       <HexagonNode key={node} isActive={activeNode === node}> */}
-      {/*         <button */}
-      {/*           className="w-full h-full flex items-center justify-center text-2xl" */}
-      {/*           onClick={() => setActiveNode(node)} */}
-      {/*         > */}
-      {/*           {node} */}
-      {/*         </button> */}
-      {/*       </HexagonNode> */}
-      {/*     ))} */}
-      {/*   </div> */}
-      {/* </div> */}
+
+      <div className="mt-8">
+        <h3 className="text-lg font-bold mb-4">Learning Path</h3>
+        <div className="flex flex-wrap justify-center gap-4">
+          {[1, 2, 3, 4, 5].map((node) => (
+            <HexagonNode key={node} isActive={activeNode === node}>
+              <button
+                className="w-full h-full flex items-center justify-center text-2xl"
+                onClick={() => setActiveNode(node)}
+              >
+                {node}
+              </button>
+            </HexagonNode>
+          ))}
+        </div>
+      </div>
     </section>
   )
 }
