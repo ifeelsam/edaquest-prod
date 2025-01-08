@@ -44,21 +44,18 @@ npm run dev
 <!-- ```env -->
 <!-- NEXT_PUBLIC_PRIVY_APP_ID=your_privy_app_id -->
 <!-- NEXT_PUBLIC_CONTRACT_ADDRESS=your_contract_address -->
-```
-
 ## Project Structure 📁
 
 ```
-
 edaquest/
 ├── backend/                # hardhad
-├── frontend/                # nextjs directory
+├── frontend/               # nextjs directory
     ├── app/                # Next.js app directory
     ├── components/         # React components
-    ├── contracts/         # Smart contracts
-    ├── styles/           # Global styles
-    ├── public/           # Static assets
-    └── scripts/          # Deployment scripts
+    ├── contracts/          # Smart contracts
+    ├── styles/             # Global styles
+    ├── public/             # Static assets
+    └── scripts/            # Deployment scripts
 
 ```
 
