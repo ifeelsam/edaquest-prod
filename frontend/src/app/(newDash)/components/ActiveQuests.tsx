@@ -22,7 +22,7 @@ const quests = [
   }
 ]
 
-function progressPercentage(currentXP: any, targetXP: any) {
+function progressPercentage(currentXP: number, targetXP: number): number {
   const progressPercentage = (currentXP / targetXP) * 100;
   return progressPercentage;
 }

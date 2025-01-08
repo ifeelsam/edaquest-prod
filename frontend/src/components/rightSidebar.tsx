@@ -22,7 +22,7 @@ export default function RightSidebar() {
         {leaderboard.map((user, index) => (
           <div key={index} className="flex items-center justify-between py-2">
             <div className="flex items-center">
-              <img src={`https://api.dicebear.com/9.x/bottts/svg?seed=avatar${index + 1}`} alt={user.name} width={30} height={30} className="pixel-art rounded-full mr-2" />
+              <Image src={`https://api.dicebear.com/9.x/bottts/svg?seed=avatar${index + 1}`} alt={user.name} width={30} height={30} className="pixel-art rounded-full mr-2" />
               <span>{user.name}</span>
             </div>
             <div className="text-sm">
