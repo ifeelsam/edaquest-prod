@@ -8,7 +8,7 @@ export default function QuickStats() {
 
   return (
     <div className="glass-morphic p-5">
-      <h2 className="text-2xl mb-4">Quick Stats</h2>
+      <h2 className="flex justify-center md:justify-start text-lg md:text-2xl mb-4">Quick Stats</h2>
       <div className="grid grid-cols-1 gap-4">
         {stats.map((stat, index) => (
           <div key={index} className="bg-accent bg-opacity-20 p-3 rounded-lg hover:scale-[1.02] transition-transform">
@@ -16,7 +16,7 @@ export default function QuickStats() {
               <span className="text-2xl">{stat.icon}</span>
               <div>
                 <p className="text-xs">{stat.label}</p>
-                <p className="text-lg font-['Press_Start_2P']">{stat.value}</p>
+                <p className="text-md md:text-lg font-['Press_Start_2P']">{stat.value}</p>
               </div>
             </div>
           </div>

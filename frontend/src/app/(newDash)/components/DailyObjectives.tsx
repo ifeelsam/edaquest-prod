@@ -7,7 +7,7 @@ export default function DailyObjectives() {
 
   return (
     <div className="glass-morphic p-5">
-      <h2 className="text-2xl mb-4">Daily Objectives</h2>
+      <h2 className="flex justify-center md:justify-start text-lg md:text-2xl mb-4">Daily Objectives</h2>
       <ul className="space-y-4">
         {objectives.map((objective, index) => (
           <li key={index} className="flex items-center space-x-2">

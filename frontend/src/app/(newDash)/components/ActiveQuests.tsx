@@ -24,29 +24,29 @@ const quests = [
 
 function progressPercentage(currentXP: number, targetXP: number): number {
   const progressPercentage = (currentXP / targetXP) * 100;
-  return progressPercentage;
+  return Math.floor(progressPercentage);
 }
 export default function ActiveQuests() {
 
 
   return (
-    <section className="glass-morphic px-6 pb-1  pt-6 rounded-lg neon-border">
-      <h2 className="text-2xl font-bold mb-4 neon-glow">Active Quests</h2>
+    <section className="glass-morphic px-6 pb-1 pt-6 rounded-lg neon-border">
+      <h2 className="flex justify-center md:justify-start text-lg md:text-2xl font-bold mb-4 neon-glow">Active Quests</h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {quests.map((quest, index) => (
           <div key={index} className="bg-primary/20 p-4 rounded-lg hover:bg-primary/30 transition-colors">
-            <h3 className="text-4xl font-bold mb-5">{quest.name}</h3>
-            <p className="text-sm">XP Reward: {quest.xpReward} <span className="text-yellow-400">🪙</span></p>
-            <p className="text-sm">Time Remaining: {quest.timeRemaining} ⏳</p>
+            <h3 className="text-2xl md:text-4xl font-bold mb-5">{quest.name}</h3>
+            <p className="text-xs md:text-sm">XP Reward: {quest.xpReward} <span className="text-yellow-400">🪙</span></p>
+            <p className="text-xs md:text-sm">Time Remaining: {quest.timeRemaining} ⏳</p>
             <div className="flex justify-between items-center">
-              <div className="w-80 bg-gray-700 rounded-full h-2">
+              <div className="w-56 md:w-80 bg-gray-700 rounded-full h-2">
                 <div className="progress-bar h-full rounded-full" style={{ width: `${progressPercentage(quest.progress, quest.xpReward)}%` }}></div>
               </div>
-              <span className="text-lg font-semibold">{progressPercentage(quest.progress, quest.xpReward)}%</span>
+              <span className="text-md md:text-lg font-semibold">{progressPercentage(quest.progress, quest.xpReward)}%</span>
             </div>
             <div className="">
               {[...Array(5)].map((_, i) => (
-                <span key={i} className={`text-3xl ${i < quest.difficulty ? 'text-red-500' : 'text-gray-500'}`}>♥</span>
+                <span key={i} className={`text-lg md:text-3xl ${i < quest.difficulty ? 'text-red-500' : 'text-gray-500'}`}>♥</span>
               ))}
             </div>
           </div>
