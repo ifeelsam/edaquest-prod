@@ -22,7 +22,7 @@ export default function RightSidebar() {
         {leaderboard.map((user, index) => (
           <div key={index} className="flex items-center justify-between py-2">
             <div className="flex items-center">
-              <Image src={`/avatar-${index + 1}.png`} alt={user.name} width={30} height={30} className="pixel-art rounded-full mr-2" />
+              <img src={`https://api.dicebear.com/9.x/bottts/svg?seed=avatar${index + 1}`} alt={user.name} width={30} height={30} className="pixel-art rounded-full mr-2" />
               <span>{user.name}</span>
             </div>
             <div className="text-sm">
@@ -32,6 +32,7 @@ export default function RightSidebar() {
           </div>
         ))}
       </div>
+
       <div className="mb-6">
         <h3 className="text-lg font-bold mb-2">Upcoming Events</h3>
         <div className="flex flex-wrap lg:flex-col">
@@ -43,6 +44,8 @@ export default function RightSidebar() {
           ))}
         </div>
       </div>
+
+      {/* achievement */}
       <div className="mt-auto">
         <h3 className="text-lg font-bold mb-2">Achievement Showcase</h3>
         <div className="flex justify-around">

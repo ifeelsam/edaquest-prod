@@ -10,6 +10,8 @@
   --secondary: #4B50BE;
   --accent: #FF2E6C;
   --background: #1A1A1A;
+  --highlight: #FF2E6C;
+  --text: #E1E1E6;
 }
 
 body {
@@ -65,7 +67,7 @@ body {
   box-shadow: 0 0 10px rgba(103, 111, 232, 0.2);
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h4, h5, h6 {
   font-family: 'Press Start 2P', cursive;
 }
 
@@ -107,6 +109,33 @@ p {
   box-shadow: 0 0 20px var(--accent);
 }
 
+.custom-checkbox {
+  appearance: none;
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 2px solid var(--primary);
+  border-radius: 4px;
+  background-color: transparent;
+  display: inline-block;
+  position: relative;
+  margin-right: 0.5rem;
+  cursor: pointer;
+}
+
+.custom-checkbox:checked {
+  background-color: var(--primary);
+}
+
+.custom-checkbox:checked::before {
+  content: '✓';
+  font-size: 1rem;
+  color: var(--text);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .grid-background {
   background-image: 
     linear-gradient(to right, rgba(103, 111, 232, 0.1) 1px, transparent 1px),
@@ -129,5 +158,39 @@ p {
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--accent);
+}
+
+.progress-bar {
+  background: linear-gradient(90deg, var(--accent) 0%, var(--highlight) 100%);
+  transition: width 0.5s ease-in-out;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.float {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.spin {
+  animation: spin 10s linear infinite;
+}
+
+@keyframes sparkle {
+  0% { opacity: 0; }
+  50% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.sparkle {
+  animation: sparkle 1.5s ease-in-out infinite;
 }
 

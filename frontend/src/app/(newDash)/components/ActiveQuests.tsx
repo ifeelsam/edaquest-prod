@@ -1,0 +1,58 @@
+const quests = [
+  {
+    name: "Smart Contract Fundamentals",
+    progress: 735,
+    xpReward: 1000,
+    timeRemaining: "2 days",
+    difficulty: 3
+  },
+  {
+    name: "DeFi Protocol Analysis Fundamentals",
+    progress: 900,
+    xpReward: 1500,
+    timeRemaining: "5 days",
+    difficulty: 4
+  },
+  {
+    name: "Blockchain Architecture",
+    progress: 400,
+    xpReward: 800,
+    timeRemaining: "1 day",
+    difficulty: 2
+  }
+]
+
+function progressPercentage(currentXP: any, targetXP: any) {
+  const progressPercentage = (currentXP / targetXP) * 100;
+  return progressPercentage;
+}
+export default function ActiveQuests() {
+
+
+  return (
+    <section className="glass-morphic px-6 pb-1  pt-6 rounded-lg neon-border">
+      <h2 className="text-2xl font-bold mb-4 neon-glow">Active Quests</h2>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {quests.map((quest, index) => (
+          <div key={index} className="bg-primary/20 p-4 rounded-lg hover:bg-primary/30 transition-colors">
+            <h3 className="text-4xl font-bold mb-5">{quest.name}</h3>
+            <p className="text-sm">XP Reward: {quest.xpReward} <span className="text-yellow-400">🪙</span></p>
+            <p className="text-sm">Time Remaining: {quest.timeRemaining} ⏳</p>
+            <div className="flex justify-between items-center">
+              <div className="w-80 bg-gray-700 rounded-full h-2">
+                <div className="progress-bar h-full rounded-full" style={{ width: `${progressPercentage(quest.progress, quest.xpReward)}%` }}></div>
+              </div>
+              <span className="text-lg font-semibold">{progressPercentage(quest.progress, quest.xpReward)}%</span>
+            </div>
+            <div className="">
+              {[...Array(5)].map((_, i) => (
+                <span key={i} className={`text-3xl ${i < quest.difficulty ? 'text-red-500' : 'text-gray-500'}`}>♥</span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  )
+}
+
