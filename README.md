@@ -1,7 +1,7 @@
 # EdaQuest 🎮📚
 
 <div align="center">
-  <img src="./frontend/public/diamond.png" alt="EdaQuest Logo" width="200" height="200"/>
+  <img src="./frontend/public/diamond.png" alt="EdaQuest Logo" width="100" height="100"/>
   > Where Education Meets Adventure in the Digital Realm
 </div>
 
