@@ -1,4 +1,3 @@
-
 import Image from 'next/image'
 
 const paths = [
@@ -40,7 +39,7 @@ export default function FeaturedPaths() {
           {paths.map((path, index) => (
             <div key={index} className="glass-morphic p-6 rounded-lg hover:scale-105 transition-transform duration-300">
               <Image src={path.image} alt={path.title} width={200} height={200} className="pixel-art mx-auto mb-4" />
-              <h3 className="text-xl font-bold mb-2">{path.title}</h3>
+              <p className="text-2xl md:text-4xl font-bold mb-2">{path.title}</p>
               <p className="mb-4">{path.description}</p>
               <div className="mb-4 text-sm">
                 <p>{path.quests} quests, {path.achievements} achievements</p>

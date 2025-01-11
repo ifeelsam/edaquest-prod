@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Footer() {
   return (
     <footer className="bg-background py-12 relative overflow-hidden">
@@ -10,19 +12,19 @@ export default function Footer() {
           <div>
             <h3 className="text-xl font-bold mb-4">Quick Links</h3>
             <ul className="text-sm sm:text-base">
-              <li><a href="#" className="hover:text-accent">Home</a></li>
-              <li><a href="#" className="hover:text-accent">Courses</a></li>
-              <li><a href="#" className="hover:text-accent">About Us</a></li>
-              <li><a href="#" className="hover:text-accent">Contact</a></li>
+              <li><Link href="https://edaquest.sanskarsharma.me/" className="hover:text-accent">Home</Link></li>
+              <li><Link href="https://edaquest.sanskarsharma.me/courses" className="hover:text-accent">Courses</Link></li>
+              <li><Link href="https://edaquest.sanskarsharma.me/about" className="hover:text-accent">About Us</Link></li>
+              <li><Link href="https://edaquest.sanskarsharma.me/contact" className="hover:text-accent">Contact</Link></li>
             </ul>
           </div>
           <div>
             <h3 className="text-xl font-bold mb-4">Connect With Us</h3>
             <div className="flex space-x-4">
-              <a href="#" className="text-2xl">📘</a>
-              <a href="https://x.com/edaquest" className="text-2xl">🐦</a>
-              <a href="#" className="text-2xl">📸</a>
-              <a href="#" className="text-2xl">🎮</a>
+              <Link href="https://edaquest.sanskarsharma.me/" className="text-2xl">📘</Link>
+              <Link href="https://x.com/edaquest" className="text-2xl">🐦</Link>
+              <Link href="https://instagram.com/edaquest" className="text-2xl">📸</Link>
+              <Link href="https://steam.com" className="text-2xl">🎮</Link>
             </div>
           </div>
         </div>

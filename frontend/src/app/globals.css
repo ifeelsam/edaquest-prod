@@ -1,51 +1,53 @@
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto&family=Roboto+Mono&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto&family=Roboto+Mono&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --primary: #676FE8;
-  --secondary: #4B50BE;
-  --accent: #FF2E6C;
-  --background: #1A1A1A;
-  --highlight: #FF2E6C;
-  --text: #E1E1E6;
+  --primary: #676fe8;
+  --secondary: #4b50be;
+  --accent: #ff2e6c;
+  --background: #1a1a1a;
+  --highlight: #ff2e6c;
+  --text: #e1e1e6;
 }
 
 body {
-  background: linear-gradient(to bottom, #2D0A4E, #1A1A1A);
-  color: #FFFFFF;
-  font-family: 'Montserrat', serif;
+  background: linear-gradient(to bottom, #2d0a4e, #1a1a1a);
+  color: #ffffff;
+  font-family: "Montserrat", serif;
   font-weight: 400;
   font-style: normal;
   --privy-border-radius-sm: 4px;
   --privy-border-radius-md: 8px;
   --privy-border-radius-lg: 12px;
   --privy-border-radius-full: 999px;
-  --privy-color-background: #0A0A1E;
-  --privy-color-background-2: #1E1E3F;
-  --privy-color-background-3: #2A2A4F;
-  --privy-color-foreground: #FFFFFF;
-  --privy-color-foreground-2: #E1E1E6;
-  --privy-color-foreground-3: #B4B4C0;
-  --privy-color-foreground-4: #8888A0;
-  --privy-color-foreground-accent: #FF2E6C;
-  --privy-color-accent: #676FE8;
-  --privy-color-accent-light: #8086EC;
-  --privy-color-accent-lightest: #9A9FF0;
-  --privy-color-accent-dark: #4B50BE;
-  --privy-color-accent-darkest: #363C8E;
-  --privy-color-success: #50E3C2;
-  --privy-color-error: #FF3B5C;
-  --privy-color-error-light: #FF5C7C;
+  --privy-color-background: #0a0a1e;
+  --privy-color-background-2: #1e1e3f;
+  --privy-color-background-3: #2a2a4f;
+  --privy-color-foreground: #ffffff;
+  --privy-color-foreground-2: #e1e1e6;
+  --privy-color-foreground-3: #b4b4c0;
+  --privy-color-foreground-4: #8888a0;
+  --privy-color-foreground-accent: #ff2e6c;
+  --privy-color-accent: #676fe8;
+  --privy-color-accent-light: #8086ec;
+  --privy-color-accent-lightest: #9a9ff0;
+  --privy-color-accent-dark: #4b50be;
+  --privy-color-accent-darkest: #363c8e;
+  --privy-color-success: #50e3c2;
+  --privy-color-error: #ff3b5c;
+  --privy-color-error-light: #ff5c7c;
 }
 
 .privy-modal {
   backdrop-filter: blur(8px);
   box-shadow: 0 0 20px rgba(103, 111, 232, 0.2);
-  border: 1px solid rgba(103, 111, 232, 0.1); }
+  border: 1px solid rgba(103, 111, 232, 0.1);
+}
 
 .privy-button {
   text-shadow: 0 0 10px rgba(255, 46, 108, 0.5);
@@ -63,27 +65,47 @@ body {
 }
 
 .privy-input:focus {
-  border-color: #676FE8;
+  border-color: #676fe8;
   box-shadow: 0 0 10px rgba(103, 111, 232, 0.2);
 }
 
-h1, h2, h4, h5, h6 {
-  font-family: 'Press Start 2P', cursive;
+h3,h5 {
+  font-family: "Bricolage Grotesque", serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+}
+
+h1,h2,h4,h6 {
+  font-family: "Press Start 2P", cursive;
 }
 
 p {
-  font-family: 'Montserrat', serif;
+  font-family: "Montserrat", serif;
   font-weight: 600;
   font-style: bold;
 }
+
 .pixel-art {
   image-rendering: pixelated;
 }
 
 .neon-glow {
-  text-shadow: 0 0 5px #FF2E6C, 0 0 10px #FF2E6C, 0 0 15px #FF2E6C, 0 0 20px #FF2E6C;
+  text-shadow:
+    0 0 5px #ff2e6c,
+    0 0 10px #ff2e6c,
+    0 0 15px #ff2e6c,
+    0 0 20px #ff2e6c;
 }
-
+.hover\:neon-glow:hover {
+  text-shadow:
+    0 0 5px #ff2e6c,
+    0 0 10px #ff2e6c,
+    0 0 15px #ff2e6c,
+    0 0 20px #ff2e6c;
+}
 .glass-morphic {
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
@@ -93,10 +115,16 @@ p {
 
 .neon-button {
   background: var(--primary);
-  color: #FFFFFF;
+  color: #ffffff;
   border: 2px solid var(--accent);
   box-shadow: 0 0 10px var(--accent);
   transition: all 0.3s ease;
+}
+
+.neon-border-red {
+  box-shadow:
+    0 0 3px var(--accent),
+    0 0 6px var(--accent);
 }
 
 .neon-border {
@@ -127,7 +155,7 @@ p {
 }
 
 .custom-checkbox:checked::before {
-  content: '✓';
+  content: "✓";
   font-size: 1rem;
   color: var(--text);
   position: absolute;
@@ -137,8 +165,11 @@ p {
 }
 
 .grid-background {
-  background-image: 
-    linear-gradient(to right, rgba(103, 111, 232, 0.1) 1px, transparent 1px),
+  background-image: linear-gradient(
+      to right,
+      rgba(103, 111, 232, 0.1) 1px,
+      transparent 1px
+    ),
     linear-gradient(to bottom, rgba(103, 111, 232, 0.1) 1px, transparent 1px);
   background-size: 20px 20px;
 }
@@ -166,9 +197,15 @@ p {
 }
 
 @keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
-  100% { transform: translateY(0px); }
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
 }
 
 .float {
@@ -176,8 +213,12 @@ p {
 }
 
 @keyframes spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .spin {
@@ -185,12 +226,72 @@ p {
 }
 
 @keyframes sparkle {
-  0% { opacity: 0; }
-  50% { opacity: 1; }
-  100% { opacity: 0; }
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }
 
 .sparkle {
   animation: sparkle 1.5s ease-in-out infinite;
 }
 
+.achievement-card {
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.achievement-card:hover {
+  transform: scale(1.05);
+}
+
+.achievement-card-front,
+.achievement-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  background: linear-gradient(145deg, #1a1a2e, #2a2a4e);
+  border: 2px solid var(--primary);
+}
+
+.achievement-card-back {
+  transform: rotateY(180deg);
+  background: linear-gradient(145deg, #2a2a4e, #1a1a2e);
+}
+
+.achievement-icon {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  color: var(--primary);
+}
+
+.achievement-name {
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.achievement-rarity {
+  font-size: 0.8rem;
+  font-weight: bold;
+  margin-bottom: 0.25rem;
+}
+
+.achievement-xp {
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: var(--accent);
+}
