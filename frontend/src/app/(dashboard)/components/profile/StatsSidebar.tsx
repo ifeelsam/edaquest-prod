@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import { Trophy, Star, CheckCircle, Zap, User, Globe, Server, Award, Book } from 'lucide-react'
+import { Trophy, Star, CheckCircle, Zap, Globe, Award, Book } from 'lucide-react'
 
 export default function StatsSidebar() {
 

@@ -1,5 +1,3 @@
-import Image from 'next/image'
-
 const lessons = [
   { id: 1, title: "Smart Contract Basics", icon: "📚", status: "completed", time: "1h" },
   { id: 2, title: "Data Types & Variables", icon: "🧱", status: "completed", time: "1.5h" },

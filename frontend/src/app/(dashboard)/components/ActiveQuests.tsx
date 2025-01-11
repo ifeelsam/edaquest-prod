@@ -38,8 +38,8 @@ export default function ActiveQuests() {
       <h2 className="flex justify-center md:justify-start text-lg md:text-2xl font-bold mb-4 neon-glow">Active Quests</h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {quests.map((quest, index) => (
-          <Link href={quest.link}>
             <div key={index} className="p-4 rounded-lg group hover:scale-105 transition-transform">
+          <Link href={quest.link}>
               <h3 className="text-2xl md:text-4xl group-hover:neon-glow font-bold mb-5">{quest.name}</h3>
               <p className="text-xs md:text-sm hover:text-white">XP Reward: {quest.xpReward} <span className="text-yellow-400">🪙</span></p>
               <p className="text-xs md:text-sm">Time Remaining: {quest.timeRemaining} ⏳</p>
@@ -54,8 +54,8 @@ export default function ActiveQuests() {
                   <span key={i} className={`text-lg md:text-3xl ${i < quest.difficulty ? 'text-red-500' : 'text-gray-500'}`}>♥</span>
                 ))}
               </div>
-            </div>
           </Link>
+            </div>
         ))}
       </div>
     </section>
