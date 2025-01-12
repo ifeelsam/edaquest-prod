@@ -27,10 +27,10 @@ export default function Header() {
         </button>
       </nav>
       {isMenuOpen && (
-        <div className="sm:hidden mt-2 p-4 glass-morphic rounded-xl">
-          <Link href="/courses" className="block neon-button px-4 py-2 rounded-xl mb-2">Courses</Link>
-          <Link href="#" className="block neon-button px-4 py-2 rounded-xl mb-2">About</Link>
-          <button onClick={() => handlelogin()} className="block neon-button px-4 py-2 rounded-xl">Login</button>
+        <div className="sm:hidden mt-2 p-4 right-36 text-center glass-morphic rounded-xl">
+          <Link href="/contact" className="block neon-button px-4 py-2 rounded-xl mb-2">Contact</Link>
+          <Link href="/about" className="block neon-button px-4 py-2 rounded-xl mb-2">About</Link>
+          <button onClick={() => handlelogin()} className="block neon-button px-6 py-2 rounded-xl">Login</button>
         </div>
       )}
     </header>
@@ -43,7 +43,7 @@ function Afterlogin() {
   if (ready && !authenticated) {
     return (
       <div className="hidden sm:flex space-x-4">
-        <Link href="/courses" className="neon-button px-4 py-2 rounded-xl">Courses</Link>
+        <Link href="/contact" className="neon-button px-4 py-2 rounded-xl">Contact</Link>
         <Link href="/about" className="neon-button px-4 py-2 rounded-xl">About</Link>
         <button onClick={() => login({ loginMethods: ['email', "google", 'wallet'] })}
           className="neon-button px-4 py-2 rounded-xl">

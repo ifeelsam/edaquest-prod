@@ -1,13 +1,17 @@
+"use client"
+import { usePrivy } from '@privy-io/react-auth'
 import Image from 'next/image'
+import Link from 'next/link'
 
 export default function TopBar() {
-  const imgUri = `https://api.dicebear.com/9.x/bottts/svg?seed=rest`
+  const { user } = usePrivy()
+  const imgUri = `https://api.dicebear.com/9.x/bottts/svg?seed=${user?.wallet?.address}`
   return (
     <header className="glass-morphic mb-2 h-auto lg:h-16 flex flex-col lg:flex-row items-center justify-between p-4">
-      <div className="flex items-center mb-4 lg:mb-0">
+      <Link href="/" className="flex items-center mb-4 lg:mb-0">
         <Image src="/diamond.png" alt="EdaQuest Logo" width={40} height={40} className="pixel-art" />
         <span className="ml-2 text-3xl font-bold neon-glow">EdaQuest</span>
-      </div>
+      </Link>
       <div className="flex flex-wrap justify-center lg:justify-end items-center space-x-4">
         <div className="text-center">
           <p className="text-sm">Level</p>
