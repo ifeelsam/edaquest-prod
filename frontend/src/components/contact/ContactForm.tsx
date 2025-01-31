@@ -24,14 +24,14 @@ export default function ContactForm() {
   return (
     <form action={formAction} onSubmit={() => setIsSubmitting(true)} className="w-full lg:w-3/5 glass-morphic p-6 rounded-lg neon-border pulse-effect">
       <div className="mb-4">
-        <label htmlFor="name" className="block pixel-font text-sm mb-2">ENTER_USERNAME:</label>
+        <label htmlFor="name" className="block pixel-font text-md md:text-lg mb-2">ENTER_USERNAME:</label>
         <div className="relative">
           <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-[#676FE8]" size={18} />
           <input
             type="text"
             id="name"
             name="name"
-            className="w-full bg-[#1E1E3F] border border-[#676FE8] rounded-md py-2 pl-10 pr-3 text-white focus:outline-none focus:ring-2 focus:ring-[#676FE8] terminal-input"
+            className="w-full bg-[#1E1E3F] border border-[#676FE8] rounded-[8px] py-2 pl-10 pr-3 text-white focus:outline-none focus:ring-2 focus:ring-[#676FE8] terminal-input"
             required
           />
         </div>
@@ -40,14 +40,14 @@ export default function ContactForm() {
       </div>
 
       <div className="mb-4">
-        <label htmlFor="email" className="block pixel-font text-sm mb-2">COMMUNICATION_CODE:</label>
+        <label htmlFor="email" className="block pixel-font text-md md:text-lg mb-2">COMMUNICATION_CODE:</label>
         <div className="relative">
           <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-[#676FE8]" size={18} />
           <input
             type="email"
             id="email"
             name="email"
-            className="w-full bg-[#1E1E3F] border border-[#676FE8] rounded-md py-2 pl-10 pr-3 text-white focus:outline-none focus:ring-2 focus:ring-[#676FE8] terminal-input"
+            className="w-full bg-[#1E1E3F] border border-[#676FE8] rounded-[8px] py-2 pl-10 pr-3 text-white focus:outline-none focus:ring-2 focus:ring-[#676FE8] terminal-input"
             required
           />
         </div>
@@ -56,13 +56,13 @@ export default function ContactForm() {
       </div>
 
       <div className="mb-4">
-        <label htmlFor="subject" className="block pixel-font text-sm mb-2">QUEST_TOPIC:</label>
+        <label htmlFor="subject" className="block pixel-font text-md md:text-lg mb-2">QUEST_TOPIC:</label>
         <div className="relative">
           <Scroll className="absolute left-3 top-1/2 transform -translate-y-1/2 text-[#676FE8]" size={18} />
           <select
             id="subject"
             name="subject"
-            className="w-full bg-[#1E1E3F] border border-[#676FE8] rounded-md py-2 pl-10 pr-3 text-white focus:outline-none focus:ring-2 focus:ring-[#676FE8] terminal-input"
+            className="w-full bg-[#1E1E3F] border border-[#676FE8] rounded-[8px] py-2 pl-10 pr-3 text-white focus:outline-none focus:ring-2 focus:ring-[#676FE8] terminal-input"
             required
           >
             <option value="">Select your quest type</option>
@@ -78,18 +78,18 @@ export default function ContactForm() {
       </div>
 
       <div className="mb-4">
-        <label htmlFor="message" className="block pixel-font text-sm mb-2">TRANSMIT_MESSAGE:</label>
+        <label htmlFor="message" className="block pixel-font text-md md:text-lg  mb-2">TRANSMIT_MESSAGE:</label>
         <div className="relative">
           <textarea
             id="message"
             name="message"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
-            className="w-full bg-[#1E1E3F] border border-[#676FE8] rounded-md py-2 px-3 text-white focus:outline-none focus:ring-2 focus:ring-[#676FE8] terminal-input min-h-[100px] resize-y"
+            className="w-full bg-[#1E1E3F] border border-[#676FE8] rounded-[8px] py-2 px-3 text-white focus:outline-none focus:ring-2 focus:ring-[#676FE8] terminal-input min-h-[100px] resize-y"
             required
             minLength={20}
           ></textarea>
-          <div className="absolute bottom-2 right-2 text-xs text-[#676FE8] pixel-font">
+          <div className="absolute bottom-4 right-4 text-xs text-[#676FE8] pixel-font">
             {characterCount}/500
           </div>
         </div>
@@ -100,7 +100,7 @@ export default function ContactForm() {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-full bg-[#4B50BE] hover:bg-[#676FE8] text-white pixel-font py-2 px-4 rounded-md transition-colors duration-300 relative overflow-hidden"
+        className="w-full bg-[#4B50BE] hover:bg-[#676FE8] text-white pixel-font py-2 px-4 rounded-[8px] transition-colors duration-300 relative overflow-hidden"
       >
         <div className="inset-0 flex items-center justify-center">
           <span className="text-lg mr-4">INITIALIZE_TRANSMISSION</span>

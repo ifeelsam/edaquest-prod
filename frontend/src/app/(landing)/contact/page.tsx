@@ -8,16 +8,16 @@ export default function ContactPage() {
       <Particles />
       <div className="grid-background absolute inset-0 pointer-events-none"></div>
       <div className="max-w-7xl mx-auto px-4 py-16 relative z-10">
-        <header className="mb-12">
-          <div className="h-[200px] glass-morphic neon-border rounded-lg overflow-hidden mb-6">
-            {/* <div className="h-full flex items-center justify-center"> */}
-            {/*   <img src="/placeholder.svg?text=Communication+Console&width=800&height=200" alt="Communication Console" className="w-full h-full object-cover pixel-art" /> */}
-            {/* </div> */}
-          </div>
-          <h1 className="pixel-font text-3xl text-center mb-2 typing-effect">
-            Initialize Communication Protocol
+        <header className="mb-20 mt-10">
+          {/* <div className="h-[200px] glass-morphic neon-border rounded-lg overflow-hidden mb-6"> */}
+          {/* <div className="h-full flex items-center justify-center"> */}
+          {/*   <img src="/placeholder.svg?text=Communication+Console&width=800&height=200" alt="Communication Console" className="w-full h-full object-cover pixel-art" /> */}
+          {/* </div> */}
+          {/* </div> */}
+          <h1 className="text-md md:text-3xl text-center mb-2 typing-effect">
+            Initialize<br className="sm:hidden" /> Communication Protocol
           </h1>
-          <p className="text-center text-lg">Connect with the EdaQuest Team</p>
+          <p className="text-center mt-4 text-md md:text-lg">Connect with the EdaQuest Team</p>
         </header>
         <div className="flex flex-col lg:flex-row gap-8">
           <ContactForm />

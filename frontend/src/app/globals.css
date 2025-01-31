@@ -81,6 +81,11 @@ h3,h5 {
 h1,h2,h4,h6 {
   font-family: "Press Start 2P", cursive;
 }
+.pixel-font {
+  font-family: 'Bricolage Grotesque', serif;
+  /* font-size: large; */
+  /* font-weight: 800; */
+}
 
 p {
   font-family: "Montserrat", serif;

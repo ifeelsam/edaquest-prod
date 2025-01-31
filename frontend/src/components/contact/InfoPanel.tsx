@@ -43,7 +43,8 @@ export default function InfoPanel() {
         <h3 className="pixel-font text-lg mb-2">FAQ Quick Access</h3>
         {faqItems.map((item, index) => (
           <details key={index} className="mb-2 glass-morphic p-2 rounded">
-            <summary className="pixel-font text-sm cursor-pointer hover:text-[#676FE8] transition-colors duration-300 flex items-center"> <MessageCircle className="mr-2" size={16} />
+            <summary className="pixel-font text-sm cursor-pointer hover:text-[#676FE8] transition-colors duration-300 flex items-center">
+              <MessageCircle className="mr-2" size={16} />
               {item.question}
             </summary>
             <p className="mt-2 text-sm">{item.answer}</p>
