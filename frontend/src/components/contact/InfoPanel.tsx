@@ -1,5 +1,5 @@
-import { Clock, MessageCircle } from 'lucide-react'
-import Image from 'next/image'
+import { Clock, MessageCircle, Twitter } from 'lucide-react'
+import Link from 'next/link'
 
 const faqItems = [
   { question: "How do I start my first quest?", answer: "Log in to your account, navigate to the Quest Hub, and select 'Begin New Quest' to start your learning journey." },
@@ -10,26 +10,27 @@ const faqItems = [
 export default function InfoPanel() {
   return (
     <div className="w-full lg:w-2/5 glass-morphic p-6 rounded-lg">
-      <h2 className="pixel-font text-2xl mb-6">Communication Channels</h2>
+      <h2 className="pixel-font md:text-2xl mb-6">Communication Channels</h2>
 
       <div className="mb-6">
-        <h3 className="pixel-font text-lg mb-2">Quick Connect</h3>
-        <div className="flex items-center mb-2">
+        <h3 className="pixel-font text-md md:text-xl mb-2">Quick Connect</h3>
+        {/* <div className="flex items-center mb-2">
           <Image src="/placeholder.svg?text=Discord&width=24&height=24" alt="Discord" width={24} height={24} className="mr-2" />
           <span>EdaQuest Server - Online</span>
-        </div>
-        <div className="flex items-center mb-2">
-          <Image src="/placeholder.svg?text=Twitter&width=24&height=24" alt="Twitter" width={24} height={24} className="mr-2" />
-          <span>@EdaQuest - Follow Us</span>
-        </div>
-        <div className="flex items-center">
+        </div> */}
+        <Link href={`https://x.com/edaquest`} className="flex items-center mb-2 hover:neon-glow">
+        <Twitter className='mr-2' />
+          {/* <Image src="/placeholder.svg?text=Twitter&width=24&height=24" alt="Twitter" width={24} height={24} className="mr-2" /> */}
+          <span>@EdaQuest</span>
+        </Link>
+        {/* <div className="flex items-center">
           <Image src="/placeholder.svg?text=Telegram&width=24&height=24" alt="Telegram" width={24} height={24} className="mr-2" />
           <span>Join EdaQuest Community</span>
-        </div>
+        </div> */}
       </div>
 
       <div className="mb-6">
-        <h3 className="pixel-font text-lg mb-2">Support Hours</h3>
+        <h3 className="pixel-font text-md md:text-xl mb-2">Support Hours</h3>
         <div className="flex items-start mb-2">
           <Clock className="mr-2 mt-1 flex-shrink-0" size={18} />
           <div>
