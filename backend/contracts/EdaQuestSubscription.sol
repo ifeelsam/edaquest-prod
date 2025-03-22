@@ -1,83 +1,139 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.20;
+// Compatible with OpenZeppelin Contracts ^5.0.0
+pragma solidity ^0.8.22;
 
-import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
-import "@openzeppelin/contracts/access/Ownable.sol";
+import {ERC1155} from "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
+import "@openzeppelin/contracts/token/ERC1155/extensions/IERC1155MetadataURI.sol";
+import {ERC1155Burnable} from "@openzeppelin/contracts/token/ERC1155/extensions/ERC1155Burnable.sol";
+import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/utils/Strings.sol";
 
-contract EdaQuestSubscription is Ownable(msg.sender) {
-    struct Module {
-        uint256 price;
-        uint256 duration;
-        bool isActive;
+contract edaQuest is ERC1155, Ownable, ERC1155Burnable {
+    struct UserSchema {
+        address userAddress;
+        string subscriptionType;
+        bool hasSubscription;
+        uint256 totalXP;
+        uint256 level;
+        uint256 questsCompleted;
+        uint256 currentStreak;
+        uint256 subscriptionTakenAt;
+        uint256 amountPaid;
     }
 
-    struct Subscription {
-        uint256 startTime;
-        uint256 expiryTime;
-        bool isActive;
-    }
+    mapping(address => UserSchema) public Users;
+    mapping(uint256 => string) private _tokenURIs;
 
-    mapping(uint256 => Module) public modules;
-    mapping(address => mapping(uint256 => Subscription)) public userSubscriptions;
+    uint256 constant MONTHLY_SUBSCRIPTION_DURATION = 30 days; // 1 months
+    uint256 constant YEARLY_SUBSCRIPTION_DURATION = 365 days; // 1 year
     
-    uint256 public moduleCount;
-    IERC20 public paymentToken;
+    uint256 constant MONTHLY_SUBSCRIPTION_PRICE = 1 ether;
+    uint256 constant YEARLY_SUBSCRIPTION_PRICE = 10 ether;
 
-    event ModuleCreated(uint256 moduleId, uint256 price, uint256 duration);
-    event SubscriptionPurchased(address user, uint256 moduleId, uint256 expiryTime);
-    event SubscriptionCancelled(address user, uint256 moduleId);
-
-    constructor(address _paymentToken) {
-        paymentToken = IERC20(_paymentToken);
+    constructor(address initialOwner) ERC1155("") Ownable(initialOwner) {
+        _tokenURIs[1] = "ipfs://bafkreihftsqvo4wg6bgf7n5cs3664wb5bm6r3wrsq537h6xf4ut4nxqdoi";
+        _tokenURIs[2] = "ipfs://bafkreiavoaru7dw5kop7yetozcp2xpsxze6paqhbwocqhr5lov6ohudhae";
     }
 
-    function createModule(uint256 _price, uint256 _duration) external onlyOwner {
-        uint newModuleId = moduleCount;
-        moduleCount++;
-        modules[newModuleId] = Module({
-            price: _price,
-            duration: _duration,
-            isActive: true
-        });
+    function setURI(uint256 tokenId, string memory newuri) public onlyOwner {
+        _tokenURIs[tokenId] = newuri;
+    }
+
+    function purchasedSubscription(address account, string memory subscription_type) public payable {
+        uint256 requiredAmount;
+        uint256 tokenId;
         
-        emit ModuleCreated(newModuleId, _price, _duration);
+        if (keccak256(abi.encodePacked(subscription_type)) == keccak256(abi.encodePacked("monthly"))) {
+            requiredAmount = MONTHLY_SUBSCRIPTION_PRICE;
+            tokenId = 1;
+        } else if (keccak256(abi.encodePacked(subscription_type)) == keccak256(abi.encodePacked("yearly"))) {
+            requiredAmount = YEARLY_SUBSCRIPTION_PRICE;
+            tokenId = 2;
+        } else {
+            revert("Invalid subscription type");
+        }
+        
+        require(msg.value >= requiredAmount, "Insufficient payment for subscription");
+        
+        Users[account].userAddress = account;
+        Users[account].subscriptionType = subscription_type;
+        Users[account].hasSubscription = true;
+        Users[account].totalXP = 10;
+        Users[account].level = 1;
+        Users[account].subscriptionTakenAt = block.timestamp;
+        Users[account].amountPaid = requiredAmount;
+        
+        _mint(account, tokenId, 1, "");
+        
+        // return any excess payment
+        if (msg.value > requiredAmount) {
+            payable(msg.sender).transfer(msg.value - requiredAmount);
+        }
     }
 
-    function subscribe(uint256 _moduleId) external {
-        Module memory module = modules[_moduleId];
-        require(module.isActive, "Module is not active");
-        require(paymentToken.balanceOf(msg.sender) >= module.price, "Insufficient balance");
-        require(paymentToken.allowance(msg.sender, address(this)) >= module.price, "Insufficient allowance");
-
-        paymentToken.transferFrom(msg.sender, address(this), module.price);
-
-        uint256 startTime = block.timestamp;
-        uint256 expiryTime = startTime + module.duration;
-
-        userSubscriptions[msg.sender][_moduleId] = Subscription({
-            startTime: startTime,
-            expiryTime: expiryTime,
-            isActive: true
-        });
-
-        emit SubscriptionPurchased(msg.sender, _moduleId, expiryTime);
+    function checkAndUpdateSubscriptionStatus(address account) public returns (bool) {
+        if (Users[account].userAddress == address(0) || !Users[account].hasSubscription) {
+            return false;
+        }
+        
+        bool isExpired = false;
+        uint256 tokenId;
+        
+        if (keccak256(abi.encodePacked(Users[account].subscriptionType)) == keccak256(abi.encodePacked("monthly"))) {
+            isExpired = block.timestamp > Users[account].subscriptionTakenAt + MONTHLY_SUBSCRIPTION_DURATION;
+            tokenId = 1;
+        } else if (keccak256(abi.encodePacked(Users[account].subscriptionType)) == keccak256(abi.encodePacked("yearly"))) {
+            isExpired = block.timestamp > Users[account].subscriptionTakenAt + YEARLY_SUBSCRIPTION_DURATION;
+            tokenId = 2;
+        }
+        
+        if (isExpired) {
+            Users[account].hasSubscription = false;
+            
+            // burn the NFT if the subscription has expired
+            if (balanceOf(account, tokenId) > 0) {
+                _burn(account, tokenId, 1);
+            }
+            
+            return false;
+        }
+        
+        return true;
     }
 
-    function hasAccess(address _user, uint256 _moduleId) public view returns (bool) {
-        Subscription memory sub = userSubscriptions[_user][_moduleId];
-        return sub.isActive && block.timestamp < sub.expiryTime;
+    function updateUsersStatus(address account) public onlyOwner {
+        require(Users[account].userAddress != address(0), "User does not exist");
+        
+        bool isActive = checkAndUpdateSubscriptionStatus(account);
+        require(isActive, "Subscription is not active or has expired");
+        
+        Users[account].totalXP += 100;
+        Users[account].level += 1;
+        Users[account].questsCompleted += 1;
+        Users[account].currentStreak += 1;
     }
 
-    function cancelSubscription(uint256 _moduleId) external {
-        Subscription storage sub = userSubscriptions[msg.sender][_moduleId];
-        require(sub.isActive, "No active subscription");
-        sub.isActive = false;
-        emit SubscriptionCancelled(msg.sender, _moduleId);
+    function getUserData(address account) public view returns (UserSchema memory) {
+        return Users[account];
     }
 
-    function withdrawFunds() external onlyOwner {
-        uint256 balance = paymentToken.balanceOf(address(this));
-        require(balance > 0, "No funds to withdraw");
-        paymentToken.transfer(owner(), balance);
+    function mintBatch(
+        address to,
+        uint256[] memory ids,
+        uint256[] memory amounts,
+        bytes memory data
+    ) public onlyOwner {
+        _mintBatch(to, ids, amounts, data);
     }
+
+    function uri(uint256 id) public view virtual override returns (string memory) {
+        string memory tokenURI = _tokenURIs[id];
+        
+        if (bytes(tokenURI).length > 0) {
+            return tokenURI;
+        }
+        
+        return string(abi.encodePacked(super.uri(id), Strings.toString(id), ".json"));
+    }
+    
 }
