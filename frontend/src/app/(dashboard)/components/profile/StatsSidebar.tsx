@@ -2,10 +2,29 @@
 
 import Image from 'next/image'
 import { Trophy, Star, CheckCircle, Zap, Globe, Award, Book } from 'lucide-react'
+import { usePrivy } from '@privy-io/react-auth';
+import { useState } from 'react';
 
 export default function StatsSidebar() {
-
-  const imgUri = `https://api.dicebear.com/9.x/bottts/svg?seed=sam`
+  const [XP, setXP] = useState<number>();
+  
+  const { ready, authenticated, user } = usePrivy();
+  function handleLevelTitle(_XP: number): string {
+    if (_XP < 100 ) {
+      return "Crypton Newbie"
+    }
+    if(_XP < 500) {
+      return "Crpto Carver"
+    }
+    return "Crypto Sage";
+  }
+  console.log("hsafldh ", user)
+  // Show nothing if user is not authenticated or data is still loading
+  if (!(ready && authenticated) || !user) {
+      return <div className='flex justify-center'>loading...</div>;
+  }
+  const imgUri = `https://api.dicebear.com/9.x/bottts/svg?seed=${user?.id}`
+  console.log("hsafldh ", user)
   return (
     <aside className="w-full lg:w-[30%] glass-morphic p-6 space-y-6">
       <div className="flex flex-col items-center mb-6">
@@ -16,12 +35,12 @@ export default function StatsSidebar() {
           height={120}
           className="rounded-full mb-4"
         />
-        <h2 className="pixel-font text-2xl neon-glow text-center">CryptoMaster</h2>
-        <p className="text-sm text-center">Level 23 • Crypto Sage</p>
+        <h2 className="pixel-font text-2xl neon-glow text-center">{user.google?.name}</h2>
+        <p className="text-sm text-center">Level 23 • {handleLevelTitle(XP || 0)}</p>
       </div>
 
       <div className="space-y-2">
-        <p className="flex items-center"><Zap className="mr-2 w-5 h-5" /> Total XP: 23,450</p>
+        <p className="flex items-center"><Zap className="mr-2 w-5 h-5" /> Total XP: {XP || 0}</p>
         <p className="flex items-center"><Book className="mr-2 w-5 h-5" /> Quests Completed: 24</p>
         <p className="flex items-center"><Award className="mr-2 w-5 h-5" /> Current Streak: 15 days</p>
       </div>

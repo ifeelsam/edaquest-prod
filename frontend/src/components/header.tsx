@@ -55,7 +55,7 @@ function Afterlogin() {
 
   if (ready && authenticated) {
 
-    const imgUri = `https://api.dicebear.com/9.x/bottts/svg?seed=${user?.wallet?.address}`
+    const imgUri = `https://api.dicebear.com/9.x/bottts/svg?seed=${user?.id}`
     navigate()
     return (
       <div className="flex flex-wrap justify-center lg:justify-end items-center space-x-4">

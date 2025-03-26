@@ -5,7 +5,7 @@ import Link from 'next/link'
 
 export default function TopBar() {
   const { user } = usePrivy()
-  const imgUri = `https://api.dicebear.com/9.x/bottts/svg?seed=${user?.wallet?.address}`
+  const imgUri = `https://api.dicebear.com/9.x/bottts/svg?seed=${user?.id}`
   return (
     <header className="glass-morphic mb-2 h-auto lg:h-16 flex flex-col lg:flex-row items-center justify-between p-4">
       <Link href="/" className="flex items-center mb-4 lg:mb-0">

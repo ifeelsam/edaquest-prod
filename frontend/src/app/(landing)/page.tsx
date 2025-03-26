@@ -17,9 +17,9 @@ export default function Home() {
     }
   }, [ready, authenticated, router]);
 
-  if (!ready || authenticated) {
-    return <div className="flex justify-center items-center min-h-screen">Loading...</div>;
-  }
+  // if (!ready) {
+  //   return <div className="flex justify-center items-center min-h-screen">Loading...</div>;
+  // }
 
   return (
     <>
