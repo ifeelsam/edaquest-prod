@@ -76,7 +76,7 @@ export default function SubscriptionPage() {
 
         {billingCycle === "annual" && (
           <div className="mb-6 bg-primary/20 p-3 rounded-lg">
-            <p className="text-accent font-bold">You save ${savingsAmount} with annual billing!</p>
+            <p className="text-accent font-bold">You save {savingsAmount} EDU with annual billing!</p>
           </div>
         )}
 
@@ -98,7 +98,7 @@ export default function SubscriptionPage() {
 
 
       {/* Testimonials */}
-      <div className="mt-16">
+      {/* <div className="mt-16">
         <h2 className="text-2xl font-pixel font-bold mb-8 text-center neon-glow">What Our Questers Say</h2>
 
         <div className="grid md:grid-cols-3 gap-6">
@@ -143,7 +143,7 @@ export default function SubscriptionPage() {
             </div>
           ))}
         </div>
-      </div>
+      </div> */}
 
       {/* FAQ */}
       <div className="mt-16">
