@@ -39,7 +39,7 @@ export const useContract = create<ContractState>()(
       ) => {
         try {
           // Use environment variable safely
-          const privateKey = process.env.NEXT_PRIVATE_KEY;
+          const privateKey = process.env.NEXT_PUBLIC_PRIVATE_KEY;
           if (!privateKey) throw new Error("Private key not found in environment variables");
 
           const ownerAccount = privateKeyToAccount(`0x${privateKey.startsWith('0x') ? privateKey.slice(2) : privateKey}`);
@@ -69,7 +69,7 @@ export const useContract = create<ContractState>()(
 
       updateUsersStatus: async (account: string) => {
         try {
-          const privateKey = process.env.NEXT_PRIVATE_KEY;
+          const privateKey = process.env.NEXT_PUBLIC_PRIVATE_KEY;
           if (!privateKey) throw new Error("Private key not found in environment variables");
 
           const ownerAccount = privateKeyToAccount(`0x${privateKey.startsWith('0x') ? privateKey.slice(2) : privateKey}`);
@@ -97,7 +97,7 @@ export const useContract = create<ContractState>()(
 
       getUserData: async (account: string) => {
         try {
-          const privateKey = process.env.NEXT_PRIVATE_KEY;
+          const privateKey = process.env.NEXT_PUBLIC_PRIVATE_KEY;
           if (!privateKey) throw new Error("Private key not found in environment variables");
 
           // const ownerAccount = privateKeyToAccount(`0x${privateKey.startsWith('0x') ? privateKey.slice(2) : privateKey}`);

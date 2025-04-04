@@ -12,16 +12,16 @@ export default function Footer() {
           <div>
             <h3 className="text-xl font-bold mb-4">Quick Links</h3>
             <ul className="text-sm sm:text-base">
-              <li><Link href="https://edaquest.sanskarsharma.me/" className="hover:text-accent">Home</Link></li>
-              <li><Link href="https://edaquest.sanskarsharma.me/courses" className="hover:text-accent">Courses</Link></li>
-              <li><Link href="https://edaquest.sanskarsharma.me/about" className="hover:text-accent">About Us</Link></li>
-              <li><Link href="https://edaquest.sanskarsharma.me/contact" className="hover:text-accent">Contact</Link></li>
+              <li><Link href="https://edaquest.com/" className="hover:text-accent">Home</Link></li>
+              <li><Link href="https://edaquest.com/courses" className="hover:text-accent">Courses</Link></li>
+              <li><Link href="https://edaquest.com/about" className="hover:text-accent">About Us</Link></li>
+              <li><Link href="https://edaquest.com/contact" className="hover:text-accent">Contact</Link></li>
             </ul>
           </div>
           <div>
             <h3 className="text-xl font-bold mb-4">Connect With Us</h3>
             <div className="flex space-x-4">
-              <Link href="https://edaquest.sanskarsharma.me/" className="text-2xl">📘</Link>
+              <Link href="https://edaquest.com/" className="text-2xl">📘</Link>
               <Link href="https://x.com/edaquest" className="text-2xl">🐦</Link>
               <Link href="https://instagram.com/edaquest" className="text-2xl">📸</Link>
               <Link href="https://steam.com" className="text-2xl">🎮</Link>

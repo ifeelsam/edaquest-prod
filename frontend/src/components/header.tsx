@@ -1,5 +1,5 @@
 "use client"
-import { navigate } from '@/lib/action'
+// import { navigate } from '@/lib/action'
 import { usePrivy } from '@privy-io/react-auth'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -56,7 +56,7 @@ function Afterlogin() {
   if (ready && authenticated) {
 
     const imgUri = `https://api.dicebear.com/9.x/bottts/svg?seed=${user?.id}`
-    navigate()
+    // navigate()
     return (
       <div className="flex flex-wrap justify-center lg:justify-end items-center space-x-4">
         <div className="text-center">

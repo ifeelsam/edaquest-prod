@@ -15,17 +15,19 @@ export default function Home() {
     if (ready && authenticated) {
       router.push('/dashboard');
     }
-  }, [ready, authenticated, router]);
+  }, [ready, authenticated, router])
 
   // if (!ready) {
   //   return <div className="flex justify-center items-center min-h-screen">Loading...</div>;
   // }
 
-  return (
+  if (!authenticated || !ready){
+    return (
     <>
       <Hero />
       <FeaturedPaths />
       <WhyEdaQuest />
     </>
   )
+  }
 }
