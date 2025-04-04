@@ -41,23 +41,33 @@ export default function ActiveQuests() {
       <h2 className="flex justify-center md:justify-start text-lg md:text-2xl font-bold mb-4 neon-glow">Active Quests</h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {quests.map((quest, index) => (
-          <div key={index} className="p-4 rounded-lg group hover:scale-105 transition-transform">
-            <Link href={quest.link}>
-              <h3 className="text-2xl md:text-4xl group-hover:neon-glow font-bold mb-5">{quest.name}</h3>
-              <p className="text-xs md:text-sm hover:text-white">XP Reward: {quest.xpReward} <span className="text-yellow-400">🪙</span></p>
-              <p className="text-xs md:text-sm">Time Remaining: {quest.timeRemaining} ⏳</p>
-              <div className="flex justify-between items-center">
-                <div className="w-56 md:w-80 bg-gray-700 rounded-full h-2">
-                  <div className="progress-bar h-full rounded-full" style={{ width: `${progressPercentage(quest.progress, quest.xpReward)}%` }}></div>
+          <div 
+            key={index} 
+            className={`relative p-4 rounded-lg group transition-transform ${quest.status ? 'hover:scale-105' : 'cursor-not-allowed'}`}
+          >
+            <div className={`${!quest.status ? 'blur-sm' : ''}`}>
+              <Link href={quest.status ? quest.link : '#'}>
+                <h3 className={`text-2xl md:text-4xl font-bold mb-5 ${quest.status ? 'group-hover:neon-glow' : ''}`}>{quest.name}</h3>
+                <p className="text-xs md:text-sm hover:text-white">XP Reward: {quest.xpReward} <span className="text-yellow-400">🪙</span></p>
+                <p className="text-xs md:text-sm">Time Remaining: {quest.timeRemaining} ⏳</p>
+                <div className="flex justify-between items-center">
+                  <div className="w-56 md:w-80 bg-gray-700 rounded-full h-2">
+                    <div className="progress-bar h-full rounded-full" style={{ width: `${progressPercentage(quest.progress, quest.xpReward)}%` }}></div>
+                  </div>
+                  <span className="text-md md:text-lg font-semibold">{progressPercentage(quest.progress, quest.xpReward)}%</span>
                 </div>
-                <span className="text-md md:text-lg font-semibold">{progressPercentage(quest.progress, quest.xpReward)}%</span>
+                <div>
+                  {[...Array(5)].map((_, i) => (
+                    <span key={i} className={`text-lg md:text-3xl ${i < quest.difficulty ? 'text-red-500' : 'text-gray-500'}`}>♥</span>
+                  ))}
+                </div>
+              </Link>
+            </div>
+            {!quest.status && (
+              <div className="absolute inset-0 flex items-center justify-center rounded-2xl bg-black bg-opacity-10 opacity-0 group-hover:opacity-100 transition-opacity">
+                <span className="text-white text-3xl font-bold">Coming Soon</span>
               </div>
-              <div>
-                {[...Array(5)].map((_, i) => (
-                  <span key={i} className={`text-lg md:text-3xl ${i < quest.difficulty ? 'text-red-500' : 'text-gray-500'}`}>♥</span>
-                ))}
-              </div>
-            </Link>
+            )}
           </div>
         ))}
       </div>
