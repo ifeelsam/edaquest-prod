@@ -1,6 +1,6 @@
 
 export default function ProgressOverview() {
-  const currentXP = 15450;
+  const currentXP = 15000;
   const targetXP = 25000;
   const progressPercentage = (currentXP / targetXP) * 100;
 

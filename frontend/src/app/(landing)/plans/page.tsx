@@ -1,6 +1,6 @@
 "use client"
 import { useState } from "react"
-import Image from "next/image"
+// import Image from "next/image"
 import { CheckCircle } from "lucide-react"
 
 export default function SubscriptionPage() {
