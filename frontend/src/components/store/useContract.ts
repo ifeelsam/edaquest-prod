@@ -123,7 +123,7 @@ export const useContract = create<ContractState>()(
       },
 
       userData: null,
-      smartContractAddress: "0xea1c2a05cd98482c4a24181057a0b937c031bc3646d2805cc3e9f8f43db914e2",
+      smartContractAddress: "0x7EcBC32c5CB6b6064A50B3f0A827F3c1534820AF",
       setSmartContractAddress: (address: string) => set({ smartContractAddress: address }),
     }),
     {

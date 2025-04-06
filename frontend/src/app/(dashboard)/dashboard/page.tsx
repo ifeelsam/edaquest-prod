@@ -1,6 +1,6 @@
 "use client";
 
-import { usePrivy } from "@privy-io/react-auth";
+import { usePrivy, useWallets } from "@privy-io/react-auth";
 import MainContent from "../components/MainContent";
 import Sidebar from "../components/Sidebar";
 import { useRouter } from "next/navigation";
@@ -8,27 +8,40 @@ import { useEffect } from "react";
 import { useUser } from "@/components/store/useUser";
 import { useContract } from "@/components/store/useContract";
 
+
 export default function Dashboard() {
   const { authenticated, ready, user } = usePrivy()
+  const { wallets } = useWallets()
   const router = useRouter();
-  const { UserDetails, setUserDetails } = useUser();
-  const { updateUsersStatus } = useContract();
-
+  const { UserDetails, setUserDetails, UserProgress, setUserProgress} = useUser();
+  const { updateUsersStatus, getUserData} = useContract();
+  
   console.log(`UserDetails ${UserDetails?.google}`)
 
   useEffect(() => {
-      const addrr = String(user?.id);
-    if (authenticated && ready) {
-      setUserDetails(user)
-      console.log(`user data: ${updateUsersStatus(addrr)}`)
-    }
+    if (ready && authenticated && user?.id) {
+      const addrr = wallets[0]?.address;
+      
+      if (addrr) {
+        setUserDetails(user);
+        console.log(`wallets for privy: ${addrr}`)
 
-    if ((ready && !authenticated)) {
+        getUserData(addrr)
+          .then(data => {
+            console.log("Contract data for user:", data)
+            setUserProgress(data)
+          })
+          .catch(error => console.error("error fetching user data:", error));
+        console.log(`user progress set`,UserProgress)
+        console.log(`update user status for:`, addrr);
+      } else {
+        console.warn("pub addr not available yet");
+      }
+
+    } else if (ready && !authenticated) {
       router.push('/');
     }
-
-      console.log(`user data: ${updateUsersStatus(addrr)}`)
-  }, [ready, updateUsersStatus,  authenticated, router, setUserDetails, UserDetails, user]);
+  }, [ready, authenticated, user, router, setUserDetails, getUserData, updateUsersStatus, wallets]);
 
   if (!ready) {
     return <div className="flex justify-center items-center min-h-screen">Loading...</div>;
