@@ -4,9 +4,10 @@ import Link from "next/link";
 export default function ProgressOverview() {
   const { UserProgress } = useUser();
 
-  const currentXP = Number(UserProgress?.totalXP) || 0;
+  let currentXP = Number(UserProgress?.totalXP) || 0;
+  currentXP *= 10
   const lvl = Number(UserProgress?.level);
-  const targetXP = 25000;
+  const targetXP = 200;
   const progressPercentage = (currentXP / targetXP) * 100;
   if (!UserProgress?.subscriptionType && !UserProgress?.subscriptionTakenAt) {
     return (

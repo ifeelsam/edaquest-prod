@@ -124,7 +124,8 @@ export const useContract = create<ContractState>()(
 
       userData: null,
       smartContractAddress: "0x7EcBC32c5CB6b6064A50B3f0A827F3c1534820AF",
-      setSmartContractAddress: (address: string) => set({ smartContractAddress: address }),
+      setSmartContractAddress: (address: string) =>
+        set({ smartContractAddress: address }),
     }),
     {
       name: "Contract Store",

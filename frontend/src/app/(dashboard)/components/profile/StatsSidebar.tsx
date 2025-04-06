@@ -2,12 +2,14 @@
 
 import Image from 'next/image'
 import { Trophy, Star, CheckCircle, Zap, Globe, Award, Book } from 'lucide-react'
-import { usePrivy } from '@privy-io/react-auth';
 import { useUser } from '@/components/store/useUser';
+import { usePrivy } from '@privy-io/react-auth';
 
 export default function StatsSidebar() {
-  const {UserProgress} = useUser()
+   
+  const {UserProgress, UserDetails} = useUser()
   const XP = Number(UserProgress?.totalXP) 
+  console.log(`account: ${UserProgress?.userAddress}`)
   const { ready, authenticated, user } = usePrivy();
   function handleLevelTitle(_XP: number): string {
     if (_XP < 100 ) {
@@ -23,7 +25,7 @@ export default function StatsSidebar() {
   if (!(ready && authenticated) || !user) {
       return <div className='flex justify-center'>loading...</div>;
   }
-  const imgUri = `https://api.dicebear.com/9.x/bottts/svg?seed=${user?.id}`
+  const imgUri = `https://api.dicebear.com/9.x/bottts/svg?seed=${UserDetails?.id}`
   console.log("hsafldh ", user)
   return (
     <aside className="w-full lg:w-[30%] glass-morphic p-6 space-y-6">
@@ -35,7 +37,7 @@ export default function StatsSidebar() {
           height={120}
           className="rounded-full mb-4"
         />
-        <h2 className="pixel-font text-2xl neon-glow text-center">{user.google?.name}</h2>
+        <h2 className="pixel-font text-2xl neon-glow text-center">{UserDetails?.google?.name}</h2>
         <p className="text-sm text-center">Level 23 • {handleLevelTitle(XP || 0)}</p>
       </div>
 

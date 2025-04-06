@@ -1,10 +1,13 @@
-"use client"
-import { useState } from "react"
-// import Image from "next/image"
-import { CheckCircle } from "lucide-react"
+"use client";
+import { useState } from "react";
+import { CheckCircle } from "lucide-react";
+import { useContract } from "@/components/store/useContract";
+import { useWallets } from "@privy-io/react-auth";
 
 export default function SubscriptionPage() {
-  const [billingCycle, setBillingCycle] = useState<"monthly" | "annual">("annual")
+  const [billingCycle, setBillingCycle] = useState<"monthly" | "annual">(
+    "annual"
+  );
 
   const plans = {
     monthly: {
@@ -21,7 +24,7 @@ export default function SubscriptionPage() {
       ],
     },
     annual: {
-      price: 20, // ~16% discount compared to monthly
+      price: 20,
       features: [
         "Access to all quests and learning paths",
         "Full skill tree progression",
@@ -35,10 +38,30 @@ export default function SubscriptionPage() {
         "2 months free",
       ],
     },
-  }
+  };
+  const {wallets}= useWallets()
+  const { purchasedSubscription } = useContract();
+  const savingsAmount =
+    Math.round((plans.monthly.price * 12 - plans.annual.price) * 100) / 100;
+  const savingsPercentage = Math.round(
+    (savingsAmount / (plans.monthly.price * 12)) * 100
+  );
 
-  const savingsAmount = Math.round((plans.monthly.price * 12 - plans.annual.price) * 100) / 100
-  const savingsPercentage = Math.round((savingsAmount / (plans.monthly.price * 12)) * 100)
+  function handlePurchasing(subscription_type: "monthly" | "annual") {
+    const account = wallets[0].address || "";
+    console.log("account", account)
+
+    if (!account) {
+      console.error("User address not found. Cannot proceed with purchase.");
+      return;
+    }
+    try {
+      purchasedSubscription(account, subscription_type)
+      .then(result => console.log("purchasing went fine:", result));
+    } catch (error) {
+      console.error("error:", error);
+    }
+  }
 
   return (
     <div className="max-w-4xl mx-auto py-32 px-4">
@@ -47,19 +70,24 @@ export default function SubscriptionPage() {
       </h1>
 
       <p className="text-center mb-8 max-w-2xl mx-auto">
-        Unlock the full EdaQuest experience and accelerate your progress with our premium subscription.
+        Unlock the full EdaQuest experience and accelerate your progress with
+        our premium subscription.
       </p>
 
       {/* Billing Toggle */}
       <div className="flex justify-center items-center mb-12">
         <button
-          className={`px-6 py-2 rounded-l-xl ${billingCycle === "monthly" ? "bg-red-500 neon-glow" : "bg-gray-700"}`}
+          className={`px-6 py-2 rounded-l-xl ${
+            billingCycle === "monthly" ? "bg-red-500 neon-glow" : "bg-gray-700"
+          }`}
           onClick={() => setBillingCycle("monthly")}
         >
           Monthly
         </button>
         <button
-          className={`px-6 py-2 rounded-r-xl ${billingCycle === "annual" ? "bg-red-500 neon-glow" : "bg-gray-700"}`}
+          className={`px-6 py-2 rounded-r-xl ${
+            billingCycle === "annual" ? "bg-red-500 neon-glow" : "bg-gray-700"
+          }`}
           onClick={() => setBillingCycle("annual")}
         >
           Annual <span className="text-accent">Save {savingsPercentage}%</span>
@@ -70,13 +98,19 @@ export default function SubscriptionPage() {
       <div className="glass-morphic p-12 rounded-lg relative overflow-hidden neon-border max-w-3xl mx-auto">
         <h2 className="text-2xl font-pixel font-bold mb-2">EdaQuest Premium</h2>
         <div className="flex items-end mb-6">
-          <span className="text-4xl font-pixel font-bold">{plans[billingCycle].price} EDU</span>
-          <span className="text-gray-400 ml-2">/{billingCycle === "monthly" ? "month" : "year"}</span>
+          <span className="text-4xl font-pixel font-bold">
+            {plans[billingCycle].price} EDU
+          </span>
+          <span className="text-gray-400 ml-2">
+            /{billingCycle === "monthly" ? "month" : "year"}
+          </span>
         </div>
 
         {billingCycle === "annual" && (
           <div className="mb-6 bg-primary/20 p-3 rounded-lg">
-            <p className="text-accent font-bold">You save {savingsAmount} EDU with annual billing!</p>
+            <p className="text-accent font-bold">
+              You save {savingsAmount} EDU with annual billing!
+            </p>
           </div>
         )}
 
@@ -89,13 +123,18 @@ export default function SubscriptionPage() {
           ))}
         </div>
 
-        <button className="neon-button w-full py-3 rounded-xl text-lg">
-          {billingCycle === "monthly" ? "Start Monthly Subscription" : "Start Annual Subscription"}
+        <button
+          onClick={() => handlePurchasing(billingCycle)}
+          className="neon-button w-full py-3 rounded-xl text-lg">
+          {billingCycle === "monthly"
+            ? "Start Monthly Subscription"
+            : "Start Annual Subscription"}
         </button>
 
-        <p className="text-center text-sm mt-4 text-gray-400">Cancel anytime. No hidden fees.</p>
+        <p className="text-center text-sm mt-4 text-gray-400">
+          Cancel anytime. No hidden fees.
+        </p>
       </div>
-
 
       {/* Testimonials */}
       {/* <div className="mt-16">
@@ -147,7 +186,9 @@ export default function SubscriptionPage() {
 
       {/* FAQ */}
       <div className="mt-16">
-        <h2 className="text-2xl font-pixel font-bold mb-8 text-center neon-glow">Frequently Asked Questions</h2>
+        <h2 className="text-2xl font-pixel font-bold mb-8 text-center neon-glow">
+          Frequently Asked Questions
+        </h2>
 
         <div className="grid md:grid-cols-2 gap-6">
           {[
@@ -173,7 +214,9 @@ export default function SubscriptionPage() {
             },
           ].map((faq, index) => (
             <div key={index} className="glass-morphic p-6 rounded-lg">
-              <h3 className="font-pixel font-bold text-lg mb-2">{faq.question}</h3>
+              <h3 className="font-pixel font-bold text-lg mb-2">
+                {faq.question}
+              </h3>
               <p>{faq.answer}</p>
             </div>
           ))}
@@ -182,11 +225,17 @@ export default function SubscriptionPage() {
 
       {/* CTA */}
       <div className="mt-16 text-center">
-        <h2 className="text-2xl font-pixel font-bold mb-4 neon-glow">Ready to Begin Your Quest?</h2>
-        <p className="mb-6">Join thousands of learners who are leveling up their skills through gamified education.</p>
-        <button className="neon-button px-8 py-3 rounded-lg text-lg">Start Your Free Trial</button>
+        <h2 className="text-2xl font-pixel font-bold mb-4 neon-glow">
+          Ready to Begin Your Quest?
+        </h2>
+        <p className="mb-6">
+          Join thousands of learners who are leveling up their skills through
+          gamified education.
+        </p>
+        <button className="neon-button px-8 py-3 rounded-lg text-lg">
+          Start Your Free Trial
+        </button>
       </div>
     </div>
-  )
+  );
 }
-
