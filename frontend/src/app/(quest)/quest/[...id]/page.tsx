@@ -1,11 +1,11 @@
 import { redirect } from "next/navigation"
 
-export default function IndividualQuest({
+export default async function IndividualQuest({
   params,
 }: {
-  params: { id: string }
+  params: Promise<{ id: string }>
 }) {
-  const { id } = params;
+  const { id } = await params;
   console.log(`id for the code ${id}`);
   if (id == "1") redirect("https://quant.edaquest.com/")
   else return <>something went wrong!</>

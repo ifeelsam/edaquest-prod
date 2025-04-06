@@ -3,11 +3,11 @@
 import Image from 'next/image'
 import { Trophy, Star, CheckCircle, Zap, Globe, Award, Book } from 'lucide-react'
 import { usePrivy } from '@privy-io/react-auth';
-import { useState } from 'react';
+import { useUser } from '@/components/store/useUser';
 
 export default function StatsSidebar() {
-  const [XP, setXP] = useState<number>();
-  
+  const {UserProgress} = useUser()
+  const XP = Number(UserProgress?.totalXP) 
   const { ready, authenticated, user } = usePrivy();
   function handleLevelTitle(_XP: number): string {
     if (_XP < 100 ) {

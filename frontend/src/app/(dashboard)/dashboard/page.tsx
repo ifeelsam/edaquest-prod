@@ -41,7 +41,7 @@ export default function Dashboard() {
     } else if (ready && !authenticated) {
       router.push('/');
     }
-  }, [ready, authenticated, user, router, setUserDetails, getUserData, updateUsersStatus, wallets]);
+  }, [ready, authenticated, user, router, setUserDetails, getUserData, updateUsersStatus, wallets, UserProgress, setUserProgress]);
 
   if (!ready) {
     return <div className="flex justify-center items-center min-h-screen">Loading...</div>;

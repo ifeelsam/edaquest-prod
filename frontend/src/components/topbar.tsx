@@ -1,5 +1,4 @@
 "use client"
-import { usePrivy } from '@privy-io/react-auth'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useUser } from './store/useUser'
