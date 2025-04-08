@@ -21,6 +21,7 @@ const loginOptions: Array<
   | "farcaster"
   | "telegram"
 > = ["email", "google"];
+
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { login } = usePrivy();
@@ -98,7 +99,7 @@ function Afterlogin() {
 
   if (ready && authenticated) {
     const imgUri = `https://api.dicebear.com/9.x/bottts/svg?seed=${user?.id}`;
-    // navigate()
+
     return (
       <div className="flex flex-wrap justify-center lg:justify-end items-center space-x-4">
         <div className="text-center">

@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { useUser } from "@/components/store/useUser";
 import { useContract } from "@/components/store/useContract";
+import ProgressOverview from "../components/ProgressOverview";
 
 
 export default function Dashboard() {
@@ -47,7 +48,15 @@ export default function Dashboard() {
     return <div className="flex justify-center items-center min-h-screen">Loading...</div>;
   }
 
-  if (ready && authenticated) {
+  if (!UserProgress?.hasSubscription && authenticated) {
+    return (
+      <div className="flex justify-center md:flex-row p-52">
+        <ProgressOverview />
+      </div>
+    );
+  }
+
+  if (UserProgress?.hasSubscription && ready && authenticated) {
     return (
       <div className="flex flex-col md:flex-row p-5">
         <MainContent />
