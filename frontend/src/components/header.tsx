@@ -4,6 +4,7 @@ import { usePrivy } from "@privy-io/react-auth";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { useUser } from "./store/useUser";
 
 const loginOptions: Array<
   | "wallet"
@@ -77,6 +78,7 @@ export default function Header() {
 
 function Afterlogin() {
   const { ready, login, authenticated, user } = usePrivy();
+  const { UserProgress } = useUser();
 
   if (ready && !authenticated) {
     return (
@@ -86,6 +88,9 @@ function Afterlogin() {
         </Link>
         <Link href="/about" className="neon-button px-4 py-2 rounded-xl">
           About
+        </Link>
+        <Link href="/plans" className="neon-button px-4 py-2 rounded-xl">
+          Pricing
         </Link>
         <button
           onClick={() => login({ loginMethods: loginOptions })}
@@ -104,7 +109,7 @@ function Afterlogin() {
       <div className="flex flex-wrap justify-center lg:justify-end items-center space-x-4">
         <div className="text-center">
           <p className="text-sm">Level</p>
-          <p className="text-xl font-bold neon-glow">23</p>
+          <p className="text-xl font-bold neon-glow">{UserProgress?.level}</p>
         </div>
         <div className="text-center">
           <p className="text-sm">EDU</p>

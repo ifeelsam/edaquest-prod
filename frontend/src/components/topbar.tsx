@@ -27,7 +27,7 @@ export default function TopBar() {
       <div className="flex flex-wrap justify-center lg:justify-end items-center space-x-4">
         <div className="text-center">
           <p className="text-sm">Level</p>
-          <p className="text-xl font-bold neon-glow">23</p>
+          <p className="text-xl font-bold neon-glow">{UserProgress?.level}</p>
         </div>
         {/* <div className="w-48 hidden sm:block"> */}
         {/* <p className="text-sm">XP: 23,450/25,000</p> */}

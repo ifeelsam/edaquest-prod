@@ -1,7 +1,26 @@
-
-import Image from 'next/image'
+import { usePrivy } from "@privy-io/react-auth";
+import Image from "next/image";
 
 export default function Hero() {
+  const { login } = usePrivy();
+
+  const loginOptions: Array<
+    | "wallet"
+    | "email"
+    | "sms"
+    | "google"
+    | "twitter"
+    | "discord"
+    | "github"
+    | "linkedin"
+    | "spotify"
+    | "instagram"
+    | "tiktok"
+    | "apple"
+    | "farcaster"
+    | "telegram"
+  > = ["email", "google"];
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden py-20">
       <div className="container mx-auto px-4 text-center z-10">
@@ -29,7 +48,10 @@ export default function Hero() {
             <p className="text-sm sm:text-base">Quest Completion Rate</p>
           </div>
         </div>
-        <button className="neon-button text-lg sm:text-xl px-6 sm:px-8 py-3 sm:py-4 rounded-xl">
+        <button
+          onClick={() => login({ loginMethods: loginOptions })}
+          className="neon-button text-lg sm:text-xl px-6 sm:px-8 py-3 sm:py-4 rounded-xl"
+        >
           Start Your Quest
         </button>
       </div>
@@ -44,6 +66,5 @@ export default function Hero() {
       </div>
       <div className="absolute inset-0 z-0 grid-background"></div>
     </section>
-  )
+  );
 }
-

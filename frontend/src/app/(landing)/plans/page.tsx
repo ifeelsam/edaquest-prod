@@ -3,12 +3,34 @@ import { useState } from "react";
 import { CheckCircle } from "lucide-react";
 import { useContract } from "@/components/store/useContract";
 import { useWallets } from "@privy-io/react-auth";
+import { useRouter } from "next/navigation";
+import { usePrivy } from "@privy-io/react-auth";
 
 export default function SubscriptionPage() {
   const [billingCycle, setBillingCycle] = useState<"monthly" | "annual">(
-    "annual"
+    "monthly"
   );
-
+  const [loadingCycle, setLoadingCycle] = useState<"monthly" | "annual" | null>(
+    null
+  );
+  const router = useRouter();
+  const { authenticated, login } = usePrivy();
+  const loginOptions: Array<
+    | "wallet"
+    | "email"
+    | "sms"
+    | "google"
+    | "twitter"
+    | "discord"
+    | "github"
+    | "linkedin"
+    | "spotify"
+    | "instagram"
+    | "tiktok"
+    | "apple"
+    | "farcaster"
+    | "telegram"
+  > = ["email", "google"];
   const plans = {
     monthly: {
       price: 2,
@@ -39,7 +61,7 @@ export default function SubscriptionPage() {
       ],
     },
   };
-  const {wallets}= useWallets()
+  const { wallets } = useWallets();
   const { purchasedSubscription } = useContract();
   const savingsAmount =
     Math.round((plans.monthly.price * 12 - plans.annual.price) * 100) / 100;
@@ -48,8 +70,12 @@ export default function SubscriptionPage() {
   );
 
   function handlePurchasing(subscription_type: "monthly" | "annual") {
-    const account = wallets[0].address || "";
-    console.log("account", account)
+    if (!authenticated) {
+      login({ loginMethods: loginOptions });
+      return;
+    }
+    const account = wallets[0]?.address;
+    console.log("account", account);
 
     if (!account) {
       console.error("User address not found. Cannot proceed with purchase.");
@@ -62,6 +88,23 @@ export default function SubscriptionPage() {
       console.error("error:", error);
     }
   }
+
+  const handleBillingCycleChange = (cycle: "monthly" | "annual") => {
+    if (!authenticated) {
+      login({ loginMethods: loginOptions });
+      return;
+    }
+
+    if (loadingCycle) return;
+
+    setLoadingCycle(cycle);
+    setBillingCycle(cycle);
+
+    setTimeout(() => {
+      setLoadingCycle(null);
+      router.push("/dashboard");
+    }, 3000);
+  };
 
   return (
     <div className="max-w-4xl mx-auto py-32 px-4">
@@ -77,20 +120,33 @@ export default function SubscriptionPage() {
       {/* Billing Toggle */}
       <div className="flex justify-center items-center mb-12">
         <button
-          className={`px-6 py-2 rounded-l-xl ${
+          className={`px-6 py-2 rounded-l-xl transition-colors duration-200 ${
             billingCycle === "monthly" ? "bg-red-500 neon-glow" : "bg-gray-700"
+          } ${
+            loadingCycle ? "opacity-50 cursor-not-allowed" : "hover:bg-red-600"
           }`}
-          onClick={() => setBillingCycle("monthly")}
+          onClick={() => handleBillingCycleChange("monthly")}
+          disabled={!!loadingCycle}
         >
-          Monthly
+          {loadingCycle === "monthly" ? "Loading..." : "Monthly"}
         </button>
         <button
-          className={`px-6 py-2 rounded-r-xl ${
+          className={`px-6 py-2 rounded-r-xl transition-colors duration-200 ${
             billingCycle === "annual" ? "bg-red-500 neon-glow" : "bg-gray-700"
+          } ${
+            loadingCycle ? "opacity-50 cursor-not-allowed" : "hover:bg-red-600"
           }`}
-          onClick={() => setBillingCycle("annual")}
+          onClick={() => handleBillingCycleChange("annual")}
+          disabled={!!loadingCycle}
         >
-          Annual <span className="text-accent">Save {savingsPercentage}%</span>
+          {loadingCycle === "annual" ? (
+            "Loading..."
+          ) : (
+            <>
+              Annual{" "}
+              <span className="text-accent">Save {savingsPercentage}%</span>
+            </>
+          )}
         </button>
       </div>
 
@@ -125,9 +181,10 @@ export default function SubscriptionPage() {
 
         <button
           onClick={() => handlePurchasing(billingCycle)}
-          className="neon-button w-full py-3 rounded-xl text-lg">
+          className="neon-button w-full py-3 rounded-xl text-lg"
+        >
           {billingCycle === "monthly"
-            ? "Start Monthly Subscription"
+            ? "Start Your 7 Days Trial Now"
             : "Start Annual Subscription"}
         </button>
 
@@ -232,7 +289,7 @@ export default function SubscriptionPage() {
           Join thousands of learners who are leveling up their skills through
           gamified education.
         </p>
-        <button className="neon-button px-8 py-3 rounded-lg text-lg">
+        <button className="neon-button px-8 py-3 rounded-xl text-lg">
           Start Your Free Trial
         </button>
       </div>
