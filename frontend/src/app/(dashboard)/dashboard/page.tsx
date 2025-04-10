@@ -21,7 +21,9 @@ export default function Dashboard() {
 
   useEffect(() => {
     if (ready && authenticated && user?.id) {
+      console.log("red", wallets)
       const addrr = wallets[0]?.address;
+      console.log("wallet add", addrr)
 
       if (addrr) {
         setUserDetails(user);
@@ -31,6 +33,7 @@ export default function Dashboard() {
           .then((data) => {
             console.log("Contract data for user:", data);
             setUserProgress(data);
+            console.log(`user pops: ${UserProgress?.userAddress}`);
           })
           .catch((error) => console.error("error fetching user data:", error));
         console.log(`user progress set`, UserProgress);

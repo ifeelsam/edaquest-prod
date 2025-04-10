@@ -84,28 +84,27 @@ export default function SubscriptionPage() {
     try {
       purchasedSubscription(account, subscription_type)
       .then(result => console.log("purchasing went fine:", result));
+      setTimeout(() => {
+        setLoadingCycle(null);
+        console.log("done with the purchase")
+        router.push("/dashboard");
+      }, 1000);
     } catch (error) {
       console.error("error:", error);
     }
   }
 
-  const handleBillingCycleChange = (cycle: "monthly" | "annual") => {
-    if (!authenticated) {
-      login({ loginMethods: loginOptions });
-      return;
-    }
+  // const handleBillingCycleChange = (cycle: "monthly" | "annual") => {
+  //   if (!authenticated) {
+  //     login({ loginMethods: loginOptions });
+  //     return;
+  //   }
 
-    if (loadingCycle) return;
+  //   if (loadingCycle) return;
 
-    setLoadingCycle(cycle);
-    setBillingCycle(cycle);
-
-    setTimeout(() => {
-      setLoadingCycle(null);
-      console.log("doenssens")
-      router.push("/dashboard");
-    }, 3000);
-  };
+  //   setLoadingCycle(cycle);
+  //   setBillingCycle(cycle);
+  // };
 
   return (
     <div className="max-w-4xl mx-auto py-32 px-4">
@@ -126,8 +125,7 @@ export default function SubscriptionPage() {
           } ${
             loadingCycle ? "opacity-50 cursor-not-allowed" : "hover:bg-red-600"
           }`}
-          onClick={() => handleBillingCycleChange("monthly")}
-          disabled={!!loadingCycle}
+          onClick={() => setBillingCycle("monthly")}
         >
           {loadingCycle === "monthly" ? "Loading..." : "Monthly"}
         </button>
@@ -137,17 +135,10 @@ export default function SubscriptionPage() {
           } ${
             loadingCycle ? "opacity-50 cursor-not-allowed" : "hover:bg-red-600"
           }`}
-          onClick={() => handleBillingCycleChange("annual")}
-          disabled={!!loadingCycle}
+          onClick={() => setBillingCycle("annual")}
         >
-          {loadingCycle === "annual" ? (
-            "Loading..."
-          ) : (
-            <>
               Annual{" "}
               <span className="text-accent">Save {savingsPercentage}%</span>
-            </>
-          )}
         </button>
       </div>
 
