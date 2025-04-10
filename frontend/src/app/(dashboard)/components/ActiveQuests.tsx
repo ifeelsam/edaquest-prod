@@ -7,7 +7,7 @@ const quests = [
     xpReward: 1000,
     timeRemaining: "2 days",
     difficulty: 3,
-    link: "/quest/1",
+    link: "/game",
     status: true
   },
   {

@@ -102,6 +102,7 @@ export default function SubscriptionPage() {
 
     setTimeout(() => {
       setLoadingCycle(null);
+      console.log("doenssens")
       router.push("/dashboard");
     }, 3000);
   };

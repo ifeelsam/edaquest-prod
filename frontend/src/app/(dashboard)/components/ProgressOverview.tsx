@@ -7,7 +7,12 @@ export default function ProgressOverview() {
   let currentXP = Number(UserProgress?.totalXP) || 0;
   currentXP *= 10
   const lvl = Number(UserProgress?.level);
-  const targetXP = 200;
+  let targetXP = 100
+  if (currentXP > 100) {
+    targetXP = 1500
+  } else {
+    targetXP = 110
+  }
   const progressPercentage = (currentXP / targetXP) * 100;
   if (!UserProgress?.subscriptionType && !UserProgress?.subscriptionTakenAt) {
     return (

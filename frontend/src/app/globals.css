@@ -13,6 +13,7 @@
   --background: #1a1a1a;
   --highlight: #ff2e6c;
   --text: #e1e1e6;
+  --radius: 0.5rem;
 }
 
 body {

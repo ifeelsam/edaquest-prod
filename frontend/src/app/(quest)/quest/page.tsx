@@ -1,5 +1,5 @@
 "use client"
-import TempGame from '@/components/game/tempGame';
+import TempGame from '@/components/game/unityGame';
 
 
 export default function GamePage() {
