@@ -1,9 +1,11 @@
+import { useUser } from "@/components/store/useUser"
 
 export default function QuickStats() {
+  const { UserProgress } = useUser()
   const stats = [
-    { icon: '🔥', label: 'Quest Streak', value: '15 Days' },
-    { icon: '✅', label: 'Completed Quests', value: '24/50' },
-    { icon: '🏆', label: 'Current Rank', value: 'Crypto Sage' },
+    { icon: '🔥', label: 'Quest Streak', value: UserProgress?.currentStreak },
+    { icon: '✅', label: 'Completed Quests', value: '0/1' },
+    { icon: '🏆', label: 'Current Rank', value: 'Crypto Newbie' },
   ]
 
   return (

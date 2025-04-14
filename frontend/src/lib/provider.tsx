@@ -12,8 +12,9 @@ export default function Providers({ children }: { children: React.ReactNode }) {
           landingHeader: "EdaQuest",
           loginMessage: "Log in or Sign up to EdaQuest"
         },
+        
         embeddedWallets: {
-          createOnLogin: 'users-without-wallets',
+          createOnLogin: 'all-users',
         },
       }}
     >

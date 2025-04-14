@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { CheckCircle } from "lucide-react";
 import { useContract } from "@/components/store/useContract";
 import { useWallets } from "@privy-io/react-auth";
@@ -13,6 +13,7 @@ export default function SubscriptionPage() {
   const [loadingCycle, setLoadingCycle] = useState<"monthly" | "annual" | null>(
     null
   );
+  const [isPurchaseReady, setIsPurchaseReady] = useState(false);
   const router = useRouter();
   const { authenticated, login } = usePrivy();
   const loginOptions: Array<
@@ -61,13 +62,22 @@ export default function SubscriptionPage() {
       ],
     },
   };
-  const { wallets } = useWallets();
+  const { wallets, ready } = useWallets();
   const { purchasedSubscription } = useContract();
   const savingsAmount =
     Math.round((plans.monthly.price * 12 - plans.annual.price) * 100) / 100;
   const savingsPercentage = Math.round(
     (savingsAmount / (plans.monthly.price * 12)) * 100
   );
+
+  useEffect(() => {
+    console.log("wallets available", wallets)
+    if (ready && authenticated && wallets[0]?.address) {
+      setIsPurchaseReady(true);
+    } else {
+      setIsPurchaseReady(false);
+    }
+  }, [ready, authenticated, wallets]);
 
   function handlePurchasing(subscription_type: "monthly" | "annual") {
     if (!authenticated) {
@@ -173,9 +183,14 @@ export default function SubscriptionPage() {
 
         <button
           onClick={() => handlePurchasing(billingCycle)}
-          className="neon-button w-full py-3 rounded-xl text-lg"
+          disabled={!isPurchaseReady && authenticated}
+          className={`neon-button w-full py-3 rounded-xl text-lg ${(!isPurchaseReady && authenticated) ? 'opacity-50 cursor-not-allowed' : ''}`}
         >
-          {billingCycle === "monthly"
+          {!authenticated
+            ? "Login to Subscribe"
+            : !isPurchaseReady
+            ? "Preparing Wallet..."
+            : billingCycle === "monthly"
             ? "Start Your 7 Days Trial Now"
             : "Start Annual Subscription"}
         </button>
