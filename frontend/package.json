@@ -10,8 +10,7 @@
   },
   "dependencies": {
     "@opencampus/ocid-connect-js": "^1.2.6",
-    "@privy-io/react-auth": "^1.98.4",
-    "@privy-io/server-auth": "^1.19.0",
+    "@privy-io/react-auth": "^2.9.1",
     "@radix-ui/react-slot": "^1.1.1",
     "@wagmi/core": "^2.16.7",
     "class-variance-authority": "^0.7.1",

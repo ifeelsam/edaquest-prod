@@ -13,7 +13,9 @@ export default function Home() {
 
   useEffect(() => {
     if (ready && authenticated) {
-      router.push('/dashboard');
+      setInterval(() => {  
+        router.push('/dashboard');
+      }, 5400);
     }
   }, [ready, authenticated, router])
 
