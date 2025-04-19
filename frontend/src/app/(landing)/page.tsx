@@ -1,6 +1,6 @@
 "use client";
 
-import { usePrivy } from '@privy-io/react-auth';
+import { getEmbeddedConnectedWallet, usePrivy, useWallets } from '@privy-io/react-auth';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import Hero from '@/components/hero'
@@ -9,15 +9,15 @@ import WhyEdaQuest from '@/components/why'
 
 export default function Home() {
   const { ready, authenticated } = usePrivy();
+  const { wallets } = useWallets();
+  const embedded =getEmbeddedConnectedWallet(wallets);
   const router = useRouter();
 
   useEffect(() => {
-    if (ready && authenticated) {
-      setInterval(() => {  
+    if (ready && authenticated && embedded) {
         router.push('/dashboard');
-      }, 5400);
     }
-  }, [ready, authenticated, router])
+  }, [ready, authenticated, router, embedded])
 
   // if (!ready) {
   //   return <div className="flex justify-center items-center min-h-screen">Loading...</div>;
