@@ -1,9 +1,9 @@
 # EdaQuest 🎮📚
 
-<div align="center">
-  <img src="./frontend/public/diamond.png" alt="EdaQuest Logo" width="100" height="100"/>
-  > Where Education Meets Adventure in the Digital Realm
-</div>
+<!-- <div align="center"> -->
+<!--   <img src="./frontend/public/diamond.png" alt="EdaQuest Logo" width="100" height="100"/> -->
+<!--   > Where Education Meets Adventure in the Digital Realm -->
+<!-- </div> -->
 
 EdaQuest is a blockchain-powered educational gaming platform that transforms learning into epic quests. Built with a retro-futuristic aesthetic, it combines nostalgic gaming elements with modern educational technology.
 
@@ -44,6 +44,7 @@ npm run dev
 <!-- ```env -->
 <!-- NEXT_PUBLIC_PRIVY_APP_ID=your_privy_app_id -->
 <!-- NEXT_PUBLIC_CONTRACT_ADDRESS=your_contract_address -->
+
 ## Project Structure 📁
 
 ```
@@ -62,6 +63,7 @@ edaquest/
 ## Design System 🎨
 
 - **Colors**:
+
   - Primary: `#676FE8` (Neon Purple)
   - Secondary: `#4B50BE` (Cyber Blue)
   - Background: `#0A0A1E` (Dark Space)
@@ -72,6 +74,7 @@ edaquest/
   - Body: Inter
 
 ---
+
 Built with 💜 by EdaQuest Team
 
 Note: All rights reserved. This code is proprietary and confidential.
