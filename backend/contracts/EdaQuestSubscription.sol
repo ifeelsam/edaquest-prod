@@ -27,8 +27,8 @@ contract edaQuest is ERC1155, Ownable, ERC1155Burnable {
     uint256 constant MONTHLY_SUBSCRIPTION_DURATION = 30 days; // 1 months
     uint256 constant YEARLY_SUBSCRIPTION_DURATION = 365 days; // 1 year
     
-    uint256 constant MONTHLY_SUBSCRIPTION_PRICE = 1 ether;
-    uint256 constant YEARLY_SUBSCRIPTION_PRICE = 10 ether;
+    uint256 constant MONTHLY_SUBSCRIPTION_PRICE = 0.0001 ether;
+    uint256 constant YEARLY_SUBSCRIPTION_PRICE = 0.0010 ether;
 
     constructor(address initialOwner) ERC1155("") Ownable(initialOwner) {
         _tokenURIs[1] = "ipfs://bafkreihftsqvo4wg6bgf7n5cs3664wb5bm6r3wrsq537h6xf4ut4nxqdoi";
